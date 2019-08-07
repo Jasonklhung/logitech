@@ -1,0 +1,234 @@
+/*----------------------------------------------------------------
+   max-width: 1024px
+------------------------------------------------------------------*/
+@media screen and (max-width: 1024px) {
+	.order{
+		margin-bottom: 20px;
+	}
+
+	.hide-text{
+		display: none;
+	}
+	.open-menu{
+		/*background-color: transparent;*/
+		/*color: #00b8fc;*/
+	}
+	.open-menu span{
+		font-size: 18px;
+		padding: 10px;
+	}
+	.frame{
+		width: 288px;
+		/*margin-bottom: 10px;*/
+	}
+	.frame-top{
+		height: 162px;	
+	}
+}
+/*----------------------------------------------------------------
+   max-width: 768px
+------------------------------------------------------------------*/
+@media screen and (max-width: 768px) {
+	/*//首頁*/
+	.nav-center{
+		position: relative;	
+		padding: 10px 15px;
+	}
+	#myNavbar ul>li.active a:before{
+		display: none;
+	}
+	#myNavbar ul>li.active a{
+		color: #dcfd00;
+	}
+	.navbar-toggle{
+		float: left;
+	}
+	.navbar-brand{
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%,-50%);
+	}
+	#myCarousel{
+		margin-top: 50px;
+	}
+	#myCarousel .carousel-inner img{
+		max-width: inherit;
+		width: auto;
+		height: 400px;
+		position: relative;
+		left: -150px;
+	}
+	.frame{
+		width: 100%;
+		/*margin-bottom: 10px;*/
+	}
+	.frame-top{
+		height: auto;
+		width: 100%;
+	}
+	.frame-top img{
+		width: 100%;
+		height: auto;
+	}
+	/*會員login member-login*/
+	.member-login .content{
+		width: 80%;
+		animation: none;
+		left: 0;
+		margin-top: 0px;
+		background: none;
+	}
+/*	後台back*/
+	.col{
+		width: 100%;
+	}
+
+
+}
+
+@media screen and (max-width: 425px) {
+	.modal-style1 .modal-dialog{
+		width: 100%;
+	}
+	.frame{
+		display: block;
+		height: auto;
+	}
+	
+	#myCarousel .carousel-inner img{
+		max-width: inherit;
+		width: auto;
+		height: 250px;
+		position: relative;
+		left: -110px;
+	}
+	.carousel-indicators{
+		bottom: 0px;
+	}
+	.carousel-indicators li{
+		width: 8px;
+		height: 8px;
+	}
+	.carousel-indicators .active{
+		width: 10px;
+		height: 10px;
+	}
+	.filter-content{
+		margin-bottom: 20px;
+	}
+	.filter-content .container{
+		display: block;
+	}
+	.input_group{
+		display: block;
+		margin-top: 10px;
+	}
+	.input_group input,.input_group select{
+		width: 100%;
+		margin-top: 5px;
+	}
+	/*//event-info*/
+	.event-info{
+		padding-top: 80px;
+	}
+	.inline-group{
+		display: block;
+	}
+	.inline-group p{
+		margin-left: 0px;
+		margin-top: 10px;
+	}
+	.event-info .main-button{
+		width: 100%;
+	}
+	.event-info .award-button{
+		width: 100%;
+		margin-top: 3px;
+		margin-left: 0px;
+	}
+	.main-button-sm{
+		width: auto;
+	}
+	.apply-form{
+		width: 100%;
+		/*padding-left: 20px;
+		padding-right: 20px;*/
+	}
+	.apply-form .inline-group{
+		display: flex;
+	}
+	.apply-form tr td{
+		width: 100%;
+		display: block;
+		margin-top: 2px;
+		margin-bottom: 20px;
+		padding: 0px;
+	}
+	.apply-form tr td:first-child{
+		text-align: left;
+		vertical-align: initial;
+		padding-top: 0px;
+		padding-bottom: 0px;
+		margin-top: 0px;
+		margin-bottom: 0px;
+		font-weight: 600;
+	}
+	.apply-form tr td:last-child{
+		padding-left: 0px;
+	}
+
+
+	#phone-verify .inline-group{
+		display: flex;
+	}
+	p.regis-terms{
+		margin-right: 0px;
+		margin-left: 0px;
+	}
+	#register h5{
+		margin-left: 20px;
+		margin-right: 20px;	
+	}
+
+	
+	/*會員member*/
+	.member .nav-tabs>li>a{
+		font-size: 16px;
+		font-weight: 700;
+	}
+	.member-info tr td:first-child{
+		padding-left: 10px;
+	}
+	.member-info tr td:last-child{
+		padding-left: 10px;
+	}
+	.member-info tr{
+		display: block;
+	}
+
+	/*會員login member-login*/
+	.member-login .content{
+		width: 100%;
+		padding: 40px;
+	}
+	/*後台back*/
+	#chart .rows{
+		padding: 0px;
+	}
+
+	#event-chart .input-group{
+		width: 100%;
+		margin-right: 0px;
+		margin-left: 0px;
+		margin-top: 5px;
+	}
+	#event-chart .filter-group{
+		display: block;
+	}
+	#event-chart .filter-group .mg-top-10{
+		margin-top: 10px;
+	}
+	
+}
+

@@ -1,0 +1,89 @@
+/*----------------------------------------------------------------
+   max-width: 1440px
+------------------------------------------------------------------*/
+@media screen and (max-width: 1440px) {
+	.left-bar{
+		left: -250px;
+	}
+
+}
+
+/*----------------------------------------------------------------
+   max-width: 1024px
+------------------------------------------------------------------*/
+@media screen and (max-width: 1024px) {
+	
+}
+/*----------------------------------------------------------------
+   max-width: 768px
+------------------------------------------------------------------*/
+@media screen and (max-width: 767px) {
+	.col{
+		width: 100%;
+	}
+	.back-nav .smshow{
+		display: block;
+	}
+	.left-bar{
+		display: none;
+	}
+	.pic-frame-group{
+		justify-content: center;
+	}
+	#type .rows:first-child{
+		margin-top: 20px;
+	}
+	.login-frame input{
+		width: 300px;
+	}
+	.bgdec1{
+		opacity: 0.8;
+		left: -150px;
+		top: 0px;
+	}
+	.bgdec2{
+		opacity: 0;
+	}
+	.bg2{
+		text-align: center;
+	}
+}
+/*----------------------------------------------------------------
+   max-width: 425px
+------------------------------------------------------------------*/
+@media screen and (max-width: 425px) {
+	
+	/*後台back*/
+	#chart .rows{
+		padding: 0px;
+	}
+
+	#event-chart .input-group{
+		width: 100%;
+		margin-right: 0px;
+		margin-left: 0px;
+		margin-top: 5px;
+	}
+	#event-chart .filter-group{
+		display: block;
+	}
+	#event-chart .filter-group .mg-top-10{
+		margin-top: 10px;
+	}
+	.hide-text{
+		display: none;
+	}
+	.open-menu span{
+		padding: 10px;
+		font-size: 15px;
+	}
+	.chart-frame{
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+	.applyform tr td{
+		display: block;
+	}
+	
+}
+
