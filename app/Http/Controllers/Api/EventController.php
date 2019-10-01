@@ -346,12 +346,14 @@ class EventController extends Controller
                         'productCategory'=>'required',
                         'productName'=>'required',
                         'applyNumber'=>'required',
+                        'storePurchase'=>'required',
                     ],
                     [
                         'applyInvoice.required' => '請填寫發票號碼',
                         'applyInvoice.regex'=>'請填寫正確的發票號碼格式 EX:AB12345678',
                         'upload.required'=>'請上傳發票圖檔',
                         'upload.mimes'=>'請上傳正確的圖片格式 Ex:jpg,jepg,png',
+                        'storePurchase.required'=>'請選擇經銷商',
                         'applyNumber.required'=>'請填寫訂單編號',
                         'productCategory.required'=>'請選擇產品',
                         'productName.required'=>'請選擇型號',
@@ -364,12 +366,14 @@ class EventController extends Controller
                         'upload'=>'required|mimes:gif,jpg,jpeg,png',
                         'productCategory'=>'required',
                         'productName'=>'required',
+                        'storePurchase2'=>'required',
                     ],
                     [
                         'applyInvoice.required' => '請填寫發票號碼',
                         'applyInvoice.regex'=>'請填寫正確的發票號碼格式 EX:AB12345678',
                         'upload.required'=>'請上傳發票圖檔',
                         'upload.mimes'=>'請上傳正確的圖片格式 Ex:jpg,jepg,png',
+                        'storePurchase2.required'=>'請選擇經銷商',
                         'productCategory.required'=>'請選擇產品',
                         'productName.required'=>'請選擇型號',
                     ]);
@@ -394,7 +398,7 @@ class EventController extends Controller
 
                 $request->file('upload')->storeAs('/media/event',$fileNewname,'public_uploads');
 
-                $upload = '/media/event/'.$fileNewname;
+                $upload = 'https://www.logitech-event.com.tw'.'/media/event/'.$fileNewname;
                 $array = json_encode($request->all());
 
                 $aId = $request->aId;
@@ -403,13 +407,15 @@ class EventController extends Controller
 
                 if($request->netbuy){
                     $netnumber = $request->applyNumber;
+                    $store = $request->storePurchase;
                 }
                 else{
                     $netnumber = 'Null';
+                    $store = $request->storePurchase2;
                 }
 
                 $applyInvoice = $request->applyInvoice;
-                $store = $request->storePurchase;
+                //$store = $request->storePurchase;
 
                 //$QRmode = $request->aQRmode;
 
@@ -429,13 +435,15 @@ class EventController extends Controller
 
                 if($request->netbuy){
                     $netnumber = $request->applyNumber;
+                    $store = $request->storePurchase;
                 }
                 else{
                     $netnumber = 'Null';
+                    $store = $request->storePurchase2;
                 }
 
                 $applyInvoice = $request->applyInvoice;
-                $store = $request->storePurchase;
+                //$store = $request->storePurchase;
 
                 $QRmode = $request->aQRmode;
 

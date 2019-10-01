@@ -44,6 +44,8 @@ Route::post('selArea', 'Api\RegisterController@selArea')->name('selArea');
 Route::post('Authcode', 'Api\RegisterController@Authcode')->name('Authcode');
 Route::post('ResendAuthcode', 'Api\RegisterController@ResendAuthcode')->name('ResendAuthcode');
 Route::post('authCheck', 'Api\RegisterController@authCheck')->name('authCheck');
+//忘記密碼
+Route::post('/sendPass', 'Api\RegisterController@sendPass')->name('sendPass');
 
 /************************ End ************************************/
 

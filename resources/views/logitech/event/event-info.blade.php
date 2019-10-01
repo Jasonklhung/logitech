@@ -87,15 +87,17 @@
 						<img src="../../{{ substr($data->aImage,1) }}" alt="">
 					</div>
 				</div>
-				@if( $data->id == '10')
+				@if( $data->id == '11')
 				<ul class="ss-store">
-					<li><a href="https://24h.pchome.com.tw/store/DSAR4R" onclick="recordStoreClick('28')" target="_blank"><img src="../../img/pchome.png" height="40"></a></li>
-					<li><a href="https://tw.buy.yahoo.com/act/activity/logitech01.html#ff" onclick="recordStoreClick('29')" target="_blank"><img src="../../img/yahoo.png"></a></li>
+					<li><a href="https://24h.pchome.com.tw/store/DSAR4Z" onclick="recordStoreClick('28')" target="_blank"><img src="../../img/pchome.png" height="40"></a></li>
 					<li><a href="https://www.momoshop.com.tw/category/DgrpCategory.jsp?d_code=1904500496" onclick="recordStoreClick('30')" target="_blank"><img src="../../img/momo.png"></a></li>
-					<li><a href="https://shopee.tw/shop/48032592/search?shopCollection=16420257" onclick="recordStoreClick('31')" target="_blank"><img src="../../img/shoope.png"></a></li>
-					<li><a href="https://www.isunfar.com.tw/events/AD06122992#/bcNo=0&ept=0" onclick="recordStoreClick('8')" target="_blank"><img src="../../img/sunfar.png"></a></li> 
-					<li><a href="https://www.eclife.com.tw/EDM/Cont4994.htm" onclick="recordStoreClick('10')" target="_blank"><img src="../../img/EClife.png"></a></li>
-					<li><a href="https://www.sanjing3c.com.tw/ecm.php?id=240#func_2352" onclick="recordStoreClick('9')" target="_blank"><img src="../../img/sanjing.png"></a></li>
+					<li><a href="https://shopee.tw/logitech_official_shop?page=0&shopCollection=17382536" onclick="recordStoreClick('31')" target="_blank"><img src="../../img/shoope.png"></a></li>
+					<!--<li><a href="https://tw.buy.yahoo.com/act/activity/logitech01.html#ff" onclick="recordStoreClick('29')" target="_blank"><img src="../../img/yahoo.png"></a></li>-->
+					<li><a href="http://www.tkec.com.tw/dic2.aspx?cid=14719&aid=5959&hid=112061" onclick="recordStoreClick('34')" target="_blank"><img src="../../img/燦坤.png"></a></li>
+					<!--<li><a href="https://www.isunfar.com.tw/events/AD06122992#/bcNo=0&ept=0" onclick="recordStoreClick('8')" target="_blank"><img src="../../img/sunfar.png"></a></li>-->
+					<li><a href="https://www.eclife.com.tw/EDM/Cont5056.htm" onclick="recordStoreClick('36')" target="_blank"><img src="../../img/EClife.png"></a></li>
+					<li><a href="https://www.sanjing3c.com.tw/ecm.php?id=240#func_2352" onclick="recordStoreClick('37')" target="_blank"><img src="../../img/sunfar.png"></a></li>
+					<!--<li><a href="https://www.sanjing3c.com.tw/ecm.php?id=240#func_2352" onclick="recordStoreClick('9')" target="_blank"><img src="../../img/sanjing.png"></a></li>-->
 				</ul>
 				@endif
 			</div>
@@ -218,6 +220,10 @@
                                     </div>
                         		</td>
                         	</tr>
+                        	<tr>
+                        		<td><span>* </span>購買方式</td>
+                                <td><input type="radio" class="realstore" id="realstore" name="buyway" value="實體店面" checked="">實體店面 <input type="radio" class="netstore" id="netstore" name="buyway" value="網路電商">網路電商</td>
+                            </tr>
                         @if($event[0]['aInvoice'] == 11 || $event[0]['aInvoice'] == 01)
                         	<tr>
                         		<td><span>* </span>發票號碼</td>
@@ -281,11 +287,24 @@
 							</tr>
 						@else($event[0]['aMode'] == 'P')
 							<tr>
-								<td><span> </span>選擇電商購買通路</td>
-								<td>
+								<td id="numberTR5"><span>* </span>選擇實體購買通路</td>
+								<td id="numberTR6">
+									<div class="input_group">
+										<select class="form-control" id="storePurchase2" name="storePurchase2">
+											<option value="" selected="true">選擇經銷商</option>
+											@foreach($realstore as $data)
+											<option value="{{$data->sId}}">{{$data->sName}}</option>
+											@endforeach
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td style="display: none" id="numberTR3"><span>* </span>選擇電商購買通路</td>
+								<td style="display: none" id="numberTR4">
 									<div class="input_group">
 										<select class="form-control" id="storePurchase" name="storePurchase">
-											<option value="" selected="true" disabled="true">選擇經銷商</option>
+											<option value="" selected="true">選擇經銷商</option>
 											@foreach($store as $data)
 											<option value="{{$data->sId}}">{{$data->sName}}</option>
 											@endforeach
@@ -298,7 +317,7 @@
 								<td style="display: none"><input type="checkbox" name="netbuy" id="netbuy" style="display: none"></td>
 							</tr>
 							<tr>
-								<td style="display: none" id="numberTR1"><span> </span>訂單編號</td>
+								<td style="display: none" id="numberTR1"><span>* </span>訂單編號</td>
 								<td style="display: none" id="numberTR2"><input type="text" name="applyNumber" id="applyNumber" class="form-control" value=""></td>
 							</tr>
 							<tr>
@@ -318,7 +337,11 @@
 
                                     </div>
                                 </td>
-                            </tr> 
+                            </tr>
+                            <tr>
+                            	<td>贈品圖</td>
+                            	<td><img id="productImage"></td>
+                            </tr>
                         @endif
 						</table>
                 </div>

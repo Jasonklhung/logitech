@@ -1103,7 +1103,11 @@ $(document).ready(function(){
 //贈品圖
 function pProductImage() {
     var value = $('#productName :selected').val();
-    
+    var a = document.getElementById('productImage');
+    a.src = '';
+    a.width = '';
+    a.height = '';
+
     $.ajax({
         method: "post",
         dataType: "json",
@@ -1117,20 +1121,20 @@ function pProductImage() {
             
             var a = document.getElementById('productImage');
             
-            if(res[0].pId == '32'){
-                a.src = '../../'+res[0].pImage.substr(1);
-                a.width = '50';
-                a.height = '181';
+            if(res[0].pId == '10' || res[0].pId == '34'){
+                a.src = '../../'+res[0].pImage;
+                a.width = '60';
+                a.height = '135';
             }
-            else if(res[0].pId == '34'){
-                a.src = '../../'+res[0].pImage.substr(1);
-                a.width = '200';
-                a.height = '168';
+            else if(res[0].pId == '32'){
+                a.src = '../../'+res[0].pImage;
+                a.width = '36';
+                a.height = '132';
             }
             else{
-                a.src = '../../'+res[0].pImage.substr(1);
-                a.width = '200';
-                a.height = '168';
+                a.src = '../../'+res[0].pImage;
+                a.width = '108';
+                a.height = '120';
             }
         },
     });
@@ -1223,17 +1227,43 @@ function authCheck() {
 // })
 
 
-$(document).on('change', '#storePurchase', function(){
-	var storePurchase = $('#storePurchase').val();
+// $(document).on('change', '#storePurchase', function(){
+// 	var storePurchase = $('#storePurchase').val();
 	
-	if(storePurchase == '25' || storePurchase == '28' || storePurchase == '29' || storePurchase == '30' || storePurchase == '31' || storePurchase == '32' || storePurchase == '33' || storePurchase == '34' || storePurchase == '35' || storePurchase == '36' || storePurchase == '37' || storePurchase == '38' || storePurchase == '39' || storePurchase == '40'){
-		document.getElementById("numberTR1").style.display="";
- 		document.getElementById("numberTR2").style.display="";
- 		document.getElementById("netbuy").checked= true;
-	}
-	else{
-		document.getElementById("numberTR1").style.display="none";
- 		document.getElementById("numberTR2").style.display="none";
- 		document.getElementById("netbuy").checked= false;
-	}
+// 	if(storePurchase == '25' || storePurchase == '28' || storePurchase == '29' || storePurchase == '30' || storePurchase == '31' || storePurchase == '32' || storePurchase == '33' || storePurchase == '34' || storePurchase == '35' || storePurchase == '36' || storePurchase == '37' || storePurchase == '38' || storePurchase == '39' || storePurchase == '40'){
+// 		document.getElementById("numberTR1").style.display="";
+//  		document.getElementById("numberTR2").style.display="";
+//  		document.getElementById("netbuy").checked= true;
+// 	}
+// 	else{
+// 		document.getElementById("numberTR1").style.display="none";
+//  		document.getElementById("numberTR2").style.display="none";
+//  		document.getElementById("netbuy").checked= false;
+// 	}
+// });
+
+
+
+$(document).on('change', '#realstore', function(){
+
+	document.getElementById("numberTR5").style.display="";
+	document.getElementById("numberTR6").style.display="";
+	document.getElementById("numberTR3").style.display="none";
+	document.getElementById("numberTR4").style.display="none";
+	document.getElementById("numberTR1").style.display="none";
+	document.getElementById("numberTR2").style.display="none";
+	document.getElementById("netbuy").checked= false;
+
+});
+
+$(document).on('change', '#netstore', function(){
+
+	document.getElementById("numberTR5").style.display="none";
+	document.getElementById("numberTR6").style.display="none";
+	document.getElementById("numberTR3").style.display="";
+	document.getElementById("numberTR4").style.display="";
+	document.getElementById("numberTR1").style.display="";
+	document.getElementById("numberTR2").style.display="";
+	document.getElementById("netbuy").checked= true;
+
 });

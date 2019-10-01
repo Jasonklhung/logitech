@@ -294,6 +294,32 @@
 	.ss-store li,.event-info .ss-store li{
 		width: 50%;
 	}
+	.event-info .ss-store li img {
+		height: 60px;
+	}
 
+}
+/*----------------------------------------------------------------
+   min-width: 1188px
+------------------------------------------------------------------*/
+@media screen and (min-width: 1188px) { 
+ .event-info .ss-store li {
+  margin-right: 32px;
+ }
+ .event-info .ss-store li:nth-last-child(1) {
+  margin-right: 0;
+ }
+}
+/*----------------------------------------------------------------
+   min-width: 769px ~ max-width: 1024px
+------------------------------------------------------------------*/
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+ .event-info .ss-store li {
+  width: 194px;
+ }
+ .event-info .ss-store li img {
+  width: 68%;
+  display: inline-block;
+ }
 }
 

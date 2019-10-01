@@ -1364,3 +1364,22 @@ p.regis-terms{
 /**{
 	border: 1px solid rgba(255,255,255,0.4);
 }*/
+
+.nofill-button{
+	width: 200px;
+	margin: auto;
+}
+.nofill-button button{
+	background-color: transparent;
+	border: none;
+	color: #00b8fc;
+	outline: none;
+    margin-bottom: 10px;
+    margin-top: -20px;
+    
+}
+.nofill-button button:hover{
+	border: none;
+	color: #00b8fc;
+    background-color: transparent;
+}

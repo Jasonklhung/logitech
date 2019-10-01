@@ -52,6 +52,9 @@ Route::group(['middleware' => ['auth:web']], function () {
 
     Route::post('/editinfo', [ 'as' => 'editinfo', 'uses' => 'MemberController@editinfo']);
 
+    //member
+    Route::post('/changePass', 'RegisterController@changePass')->name('changePass');
+
 });
 
 

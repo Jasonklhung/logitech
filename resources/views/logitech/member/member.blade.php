@@ -45,6 +45,10 @@
 			    				<td class="flex-inline"><div class="edit2">{{$zip->zCity}}{{$zip->zArea}}{{Auth::guard('web')->user()->cAddress}}</div><input class="form-control val" type='hidden'><span class="lnr lnr-pencil edit-symbolA"></span></td>
 			    				@endif
 			    			</tr>
+			    			<tr>
+			    				<td>密碼：</td>
+			    				<td class="flex-inline"><div class="edit">**********</div><input class="form-control val" type='hidden'><span class="lnr lnr-pencil change-pass"></span></td>
+			    			</tr>
 			    			<!-- <tr>
 			    				<td>&nbsp;</td><td>
                                     <button type="submit" class="btn btn-default main-button">確定修改</button><br><br>
@@ -95,6 +99,46 @@
 			    </div>
 			</div>
 	  	</div>
+	</div>
+
+	<!-- 修改密碼 model-->
+	<div class="modal fade" id="change-pass" role="dialog">
+	    <div class="modal-dialog modal-sm">
+		    <div class="modal-content">
+		        <div class="modal-header modal-noborder">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        <div class="modal-body">
+		        	<form id="changePass">
+		        		@csrf
+		        		<div class="content">
+		        			<center><h4>修改密碼</h4></center>
+
+		        			<div class="alert alert-danger">
+		        				<ul>
+		        					@foreach($errors as $error)
+		        					<li>{{ $error }}</li>
+		        					@endforeach
+		        				</ul>
+		        			</div>
+
+		        			<input type="password" class="form-control modal-input" name="oldpassword" placeholder="請輸入舊密碼" required="">
+		        			<br>
+		        			<input type="password" class="form-control modal-input mg-bt-20" style="margin-bottom: 5px;" name="newpassword" placeholder="請輸入新密碼" required="">
+		        			<input type="password" class="form-control modal-input mg-bt-20" name="confirmpassword" placeholder="請再次輸入輸入新密碼" required="">
+
+		        		</div>
+		        		<center>
+		        			<div class="button-group mg-bt-20">
+		        				<button type="submit" class="btn btn-default login-success main-button-sm" data-toggle="modal">修改</button>
+		        				<button type="button" class="btn btn-default register main-button-sm" data-toggle="modal" data-dismiss="modal">取消</button>
+		        			</div>
+		        		</center>
+		        	</form>
+
+		        </div>
+		    </div>
+	    </div>
 	</div>
 	<script type="text/javascript">
 		$("#activities-list").DataTable({
@@ -175,5 +219,52 @@
 			  }
 			});
 		});
+
+		$(".change-pass").click(function(){
+			$('#change-pass').modal('show');
+		})
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			jQuery('.alert-danger').hide();
+
+			$('#changePass').on('submit',function(e){
+
+				e.preventDefault();
+				var formData = new FormData(this);
+
+				$.ajax({
+					method:'POST',
+					url:"{{route('changePass')}}",
+					data:formData,
+					success:function(result)
+					{
+						if(result.errors) {
+							jQuery('.alert-danger').html('');
+
+							jQuery.each(result.errors, function(key, value){
+
+								jQuery('.alert-danger').show();
+								jQuery('.alert-danger').append('<li>'+value+'</li>');
+							});
+						}
+						else{
+							jQuery('.alert-danger').html('');
+
+							jQuery.each(result.success, function(key, value){
+
+								jQuery('.alert-danger').show();
+								jQuery('.alert-danger').append('<li>'+value+'</li>');
+								window.location.reload()
+							});
+						}
+					},
+					cache: false,
+					contentType: false,
+					processData: false
+				})
+			})
+		})
 	</script>
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\EventRepository;
+use App\User;
 
 class RegisterController extends Controller
 {
@@ -100,6 +101,42 @@ class RegisterController extends Controller
         }
         else{
             return 'NG';
+        }
+    }
+
+    public function sendPass(Request $request)
+    {
+        $reMobile = $request->phone;
+
+        $user = User::where('cMobile',$reMobile)->get();
+
+        if($user->isEmpty()){
+
+            return ('此手機尚未被註冊,請重新填寫');
+        }
+        else{
+
+            $msg = mt_rand(100000,999999);
+
+            User::where('cMobile',$reMobile)->update(['password' => bcrypt($msg)]);
+
+            $msg = urlencode('這是您的新密碼 : '.$msg.',請使用新密碼登入後,立即前往會員專區修改密碼!') ;
+
+            $platform = 'logitechEvents';
+
+
+            $code = hash('sha256', 'accuhit:sms:'.$reMobile.':'.$platform) ;
+            $url = 'http://ub001.accuhit.net/api/fet-msg.php?&code='.$code.'&mobile='.$reMobile.'&message='.$msg.'&platform='.$platform.'' ;
+            $json = file_get_contents($url);
+
+            $arr = json_decode($json, true) ;
+
+            if ($arr['sStatus'] == 'Y'){
+                return  ('OK');
+            }
+            else{
+               return ('NG') ;
+           }
         }
     }
 }

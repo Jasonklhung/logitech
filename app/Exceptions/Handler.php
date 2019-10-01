@@ -15,6 +15,7 @@ class Handler extends ExceptionHandler
      */
     protected $dontReport = [
         //
+        AuthenticationException::class
     ];
 
     /**
@@ -36,6 +37,13 @@ class Handler extends ExceptionHandler
     public function report(Exception $exception)
     {
         parent::report($exception);
+
+        if($exception->getMessage() == 'Unauthenticated.' || empty($exception->getMessage()) || $exception instanceof AuthenticationException){
+            //'訊息為：Unauthenticated',此異常不發送通知
+        }else{
+            $this->pushOver($exception->getMessage());
+        }
+
     }
 
     /**
@@ -62,5 +70,27 @@ class Handler extends ExceptionHandler
         }
 
         return redirect()->guest(route('login'));
+    }
+
+    function pushOver($msg){
+        $msg = trim($msg);
+
+        if($msg != 'Unauthenticated.') {
+
+            $msg = '[logitech]' . $msg;
+
+            curl_setopt_array($ch = curl_init(), array(
+                CURLOPT_URL => "https://api.pushover.net/1/messages.json",
+                CURLOPT_POSTFIELDS => array(
+                    "token" => "ap9hkibdqds1ssbcvz3b7h9mo8mz31",
+                    "user" => "ujikj81ex55jevhrh7kp1gxig6cxez",
+                    "message" => $msg,
+                ),
+                CURLOPT_SAFE_UPLOAD => true,
+                CURLOPT_RETURNTRANSFER => true,
+            ));
+            curl_exec($ch);
+            curl_close($ch);
+        }
     }
 }

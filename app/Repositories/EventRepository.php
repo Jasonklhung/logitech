@@ -192,12 +192,23 @@ class EventRepository
 				->get();
 	}
 
-	//取得商店名稱
+	//取得網購商店名稱
 	public function getStore($id)
 	{
 		return $this->actstore
 				->leftJoin('aStore','aActStores.aStore','=','aStore.sId')
 				->where('aActivity',$id)
+				->where('sCity','網購')
+				->get();
+	}
+
+	//取得實體商店名稱
+	public function getrealStore($id)
+	{
+		return $this->actstore
+				->leftJoin('aStore','aActStores.aStore','=','aStore.sId')
+				->where('aActivity',$id)
+				->where('sCity','實體')
 				->get();
 	}
 

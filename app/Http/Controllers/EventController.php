@@ -7,6 +7,7 @@ use App\Repositories\EventRepository;
 use App\Repositories\ActivitiesRepository;
 use Carbon\Carbon;
 use Auth;
+use DB;
 
 class EventController extends Controller
 {
@@ -78,6 +79,9 @@ class EventController extends Controller
         $store = $this->eventRepository
                 ->getStore($id);
 
+        $realstore = $this->eventRepository
+                ->getrealStore($id);
+
         $register = $this->eventRepository
                     ->getConsumerRegister($zid,$id);
 
@@ -89,6 +93,6 @@ class EventController extends Controller
 
         //dd($event);
 
-    	return view('logitech/event/event-info',compact('event','today','city','zip','product','store','register','css','activities'));
+    	return view('logitech/event/event-info',compact('event','today','city','zip','product','store','realstore','register','css','activities'));
     }
 }

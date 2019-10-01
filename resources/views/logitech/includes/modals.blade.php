@@ -90,17 +90,68 @@ $privacy1 = '感謝您參與本次活動，您個人的隱私權，主辦單位�
 		        			<input type="password" class="form-control modal-input mg-bt-20" id="password" name="password" placeholder="請輸入密碼" required="">
 
 		        		</div>
+		        		<div class="nofill-button text-right">
+		        			<button type="button" class="btn btn-default register" data-toggle="modal" data-target="#send-pass" data-dismiss="modal">忘記密碼</button>
+		        		</div>
 		        		<div class="button-group mg-bt-20">
 		        			<!-- <button type="submit" class="btn btn-default login-success main-button-sm" data-toggle="modal" data-target="#login-success" data-dismiss="modal">登入</button> -->
 		        			<button type="submit" class="btn btn-default login-success main-button-sm" data-toggle="modal">登入</button>
 		        			<button type="button" class="btn btn-default register main-button-sm" data-toggle="modal" data-target="#register" data-dismiss="modal">註冊</button>
 		        		</div>
+		        		
 		        	</form>
 
 		        </div>
 		    </div>
 	    </div>
 	</div>
+
+
+	<!--忘記密碼Modal-->
+	<div class="modal fade modal-style1" id="send-pass" role="dialog">
+	    <div class="modal-dialog modal-sm">
+		    <div class="modal-content overflow-hid">
+		        <div class="modal-header modal-noborder modal-header-color">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-h4"><span class="lnr lnr-smartphone" style="font-size: 16px"></span> 忘記密碼</h4>
+		        </div>
+		        <div class="modal-body pd-top-30">
+		        	<div class="x-center">
+		        		<p>請輸入註冊時使用的手機號碼<span></span></p>
+		        		<form>
+		        			<p class="inline-group"><input type="text" id="passphone" class="form-control"></p>
+		        		</form>
+		        	</div>
+		        </div>
+		        <div class="modal-footer modal-noborder x-center">
+		          	<!-- <button type="submit" class="btn btn-default main-button-sm phone-verify2" data-toggle="modal" data-target="#success2" data-dismiss="modal">確定</button> -->
+		          	<button type="button" class="btn btn-default main-button-sm phone-verify2" data-toggle="modal" onclick="sendPass()">確定</button>
+		        </div>
+		    </div>
+	    </div>
+	</div>
+	<script type="text/javascript">
+		function sendPass() {
+			var phone = $('#passphone').val();
+			$.ajax({
+				url:"{{route('sendPass')}}",
+				method:"POST",
+				dataType: "text",
+				data:{
+					'phone':phone,
+				},
+				success:function(txt){
+					if (txt == 'OK') {
+						alert('新密碼已經發送至手機,請確認') ;
+						location.reload();
+					}
+					else{
+						alert(txt) ;
+					}
+				}
+			});
+		}
+	</script>
     
 	<!--登入成功Modal-->
 	<div class="modal fade" id="login-success" role="dialog">
@@ -130,6 +181,68 @@ $privacy1 = '感謝您參與本次活動，您個人的隱私權，主辦單位�
 		        <div class="modal-body pd-top-30">
 		        	<form action="{{ route('register' )}}" method="POST" id="registerForm">
 		        		@csrf
+
+		        		@if(session()->has('cName'))
+		        		<table class="apply-form">
+		        			<tr>
+		        				<td><span>* </span>姓名</td>
+		        				<td><input type="text" name="regName" class="form-control" required="" value="{{ Session::get('cName') }}"></td>
+		        			</tr>
+		        			<tr>
+		        				<td><span>* </span>性別</td>
+		        				@if(Session::get('cGender') == 'M')
+		        				<td><div class="inline-group"><div><input type="radio" name="regGender" value="M" required="" checked="">男</div><div><input type="radio" name="regGender" value="F" required="">女</div></div></td>
+		        				@else
+		        				<td><div class="inline-group"><div><input type="radio" name="regGender" value="M" required="">男</div><div><input type="radio" name="regGender" value="F" required="" checked="">女</div></div></td>
+		        				@endif
+		        			</tr>
+		        			<tr>
+		        				<td><span>* </span>出生年月日</td>
+		        				<td><input type="text" name="regBirthday" class="form-control choose-date" required="" value="{{ Session::get('cBirthday') }}"></td>
+		        			</tr>
+		        			<tr class="alert-warning">
+		        				<td><span>* </span></td>
+		        				<td>手機號碼已被註冊,請重新填寫</td>	
+		        			</tr>
+		        			<tr>
+		        				<td><span>* </span>手機</td>
+		        				<td><input type="text" name="regMobile" class="form-control" required=""></td>
+		        			</tr>
+		        			<tr>
+		        				<td><span>* </span>Email</td>
+		        				<td><input type="email" name="regEmail" class="form-control" required="" value="{{ Session::get('cEmail') }}"></td>
+		        			</tr>
+		        			<tr>
+		        				<td><span>* </span>地址</td>
+		        				<td>
+		        					<div class="input_group">
+		        						<select class="form-control" name="regCity" id="regCity" required="">
+		        							<option selected disabled value="">縣市</option>
+		        							@foreach($city as $data)
+		        							<option value="{{$data->zCity}}">{{$data->zCity}}</option>
+		        							@endforeach
+		        						</select>
+		        						<select class="form-control" name="regDistinct" id="regDistinct" required="">
+		        							<option selected disabled value="">地區</option>	
+		        						</select>
+		        					</div>
+		        					<div class="input_group">
+		        						<input type="hidden" id="regCity_tmp" value="">
+		        						<input type="hidden" id="regZip" name="regZip" value="">
+		        						<input type="text" name="regAddress" class="form-control" required="">
+		        					</div>
+		        				</td>
+		        			</tr>
+		        			<tr>
+		        				<td><span>* </span>密碼</td>
+		        				<td><input type="password" name="regPassword" class="form-control"></td>
+		        			</tr>
+		        			<tr>
+		        				<td><span>* </span>再次輸入密碼</td>
+		        				<td><input type="password" name="regPassword2" class="form-control"></td>
+		        			</tr>
+		        		</table>
+		        		@else
 		        		<table class="apply-form">
 		        			<tr>
 		        				<td><span>* </span>姓名</td>
@@ -181,6 +294,7 @@ $privacy1 = '感謝您參與本次活動，您個人的隱私權，主辦單位�
 		        				<td><input type="password" name="regPassword2" class="form-control"></td>
 		        			</tr>
 		        		</table>
+		        		@endif
 		        		<p class="regis-terms"><?=nl2br($privacy1)?></p>
 		        		<h5><input type="checkbox" name="regAgree" value="Y" required="">本人已詳閱<span >個人隱私權條款</span>，並同意授權個資使用</h5>
 
@@ -193,6 +307,12 @@ $privacy1 = '感謝您參與本次活動，您個人的隱私權，主辦單位�
 		    </div>
 	    </div>
 	</div>
+
+	@if(session()->has('cName'))
+		<script type="text/javascript">
+			$('#register').modal('show');
+		</script>
+    @endif
     
 	<!--手機註冊驗證Modal-->
 	<div class="modal fade modal-style1" id="phone-verify2" role="dialog">

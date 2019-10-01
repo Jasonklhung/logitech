@@ -22,6 +22,7 @@ body {
 }
 body *{
 	position: relative;
+	/*display: inline-block;*/
 }
 
 table.dataTable thead{
@@ -696,7 +697,7 @@ footer p{
 }
 
 .section.event-info{
-	background-color: #ffddd7a8;
+	background-color: #b6d8f5;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -1383,24 +1384,27 @@ p.regis-terms{
 	padding-left: 0;
 }
 .event-info .ss-store{
-	width: 100%;
+	display: flex;
+	justify-content: space-between;
 }
 .ss-store li{
-	width: 20%;
-	float: left;
 	display: inline-block;
 	text-align: center;
 }
 .event-info .ss-store li{
-	width: 14.28571428%;
+	/* width: 20%; */
+	/* height: 120px; */
+	padding: 0;
 }
 .ss-store li img{
-	width: 100%;
+	/* width: 100%; */
 }
 
 .event-info .ss-store li img{
 	width: 100%;
-	height: auto;
+	height: 70px;
+	display: block;
+	object-fit: contain;
 }
 /* 5/31 修正排版問題的問題by曾 */
 .hidden-xs{
@@ -1423,3 +1427,22 @@ z-index: 1;
 /**{
 	border: 1px solid rgba(255,255,255,0.4);
 }*/
+
+.nofill-button{
+	width: 200px;
+	margin: auto;
+}
+.nofill-button button{
+	background-color: transparent;
+	border: none;
+	color: #00b8fc;
+	outline: none;
+    margin-bottom: 10px;
+    margin-top: -20px;
+    
+}
+.nofill-button button:hover{
+	border: none;
+	color: #00b8fc;
+    background-color: transparent;
+}

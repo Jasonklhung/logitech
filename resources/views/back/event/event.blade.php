@@ -11,7 +11,7 @@
 					<div class="mg-top-10">活動參加名單下載</div>
 					<div class="input-group">
 						<select class="form-control" id="event_active" name="event_active">
-							<option value="" disabled="disabled" selected>選擇活動</option>	
+							<option  disabled="disabled" selected>選擇活動</option>	
 							@foreach($event as $res)
 								<option value="{{$res->id}}">{{$res->aTitle}}</option>
 							@endforeach
@@ -85,6 +85,27 @@
 		});
 		$("#events-table_filter input").attr("placeholder","輸入關鍵字查詢");
 	});
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#event_download").on('click',function(){
+			var event_active = $('#event_active').val();
+			var event_start = $('#event_start').val();
+			var event_end = $('#event_end').val();
+
+			if(event_active == '' || event_active == null){
+				alert('請選擇活動');
+				return false;
+			}
+			else if(event_start == '' || event_end == ''){
+				alert('請選擇日期');
+				return false;
+			}
+			else{
+
+			}
+		})
+	})
 </script>
 
 @endsection

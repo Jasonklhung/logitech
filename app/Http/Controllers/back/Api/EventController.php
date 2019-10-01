@@ -65,13 +65,15 @@ class EventController extends Controller
 
     public function export(Request $request) 
     {
-        $id = $request->event_active;
-        $start = $request->event_start;
-        $end = $request->event_end;
-        $end = date("Y-m-d",strtotime("+1 day",strtotime($end)));
-        $today = Carbon::now()->format('Ymd');
 
-       return (new ActivityExport)->search($id,$start,$end)->download($today.'_logitech.xlsx');
+            $id = $request->event_active;
+            $start = $request->event_start;
+            $end = $request->event_end;
+            $end = date("Y-m-d",strtotime("+1 day",strtotime($end)));
+            $today = Carbon::now()->format('Ymd');
+
+            return (new ActivityExport)->search($id,$start,$end)->download($today.'_logitech.xlsx');
+
     }
 
 

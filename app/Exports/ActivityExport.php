@@ -24,7 +24,7 @@ class ActivityExport implements FromQuery ,WithHeadings
     {
         return Register::query()
         		->select('aConsumer.cName','aConsumer.cGender','aConsumer.cBirthday','aConsumer.cMobile','aConsumer.cEmail',
-        				'aZiparea.zCity','aZiparea.zArea','aConsumer.cAddress','aStore.sName','aRegister.rNetNumber','aRegister.rInvoiceNo','aRegister.rInvoiceImage','aProductList.pCategory','aProductList.pName')
+        				'aZiparea.zCity','aZiparea.zArea','aConsumer.cAddress','aStore.sCity','aStore.sName','aRegister.rNetNumber','aRegister.rInvoiceNo','aRegister.rInvoiceImage','aProductList.pCategory','aProductList.pName')
         		->leftjoin('aConsumer','aRegister.rConsumer','=','aConsumer.id')
                 ->leftjoin('aStore','aStore.sId','=','aRegister.rStore')
         		->leftjoin('aZiparea','aZiparea.zZip','=','aConsumer.cZip')
@@ -44,7 +44,8 @@ class ActivityExport implements FromQuery ,WithHeadings
             '縣市',
             '地區',
             '地址',
-            '電商',
+            '類別',
+            '店家',
             '訂單編號',
             '發票號碼',
             '發票圖檔路徑',
