@@ -29,6 +29,7 @@ Route::post('BannerClick', 'Api\EventController@BannerClick');
 Route::post('StoreClick', 'Api\EventController@StoreClick');
 Route::post('ActivityClick', 'Api\EventController@ActivityClick');
 Route::post('ShareClick', 'Api\EventController@ShareClick')->name('ShareClick');
+Route::get('ShareClick2', 'Api\EventController@ShareClick2')->name('ShareClick2');
 
 //Event-info
 Route::post('selProduct', 'Api\EventController@selProduct');
@@ -59,6 +60,7 @@ Route::post('addStore', 'back\Api\EventController@addStore');
 Route::post('getProductName', 'back\Api\EventController@getProductName');
 Route::post('getStoreName', 'back\Api\EventController@getStoreName');
 Route::post('exceldownload', [ 'as' => 'export', 'uses' => 'back\Api\EventController@export']);
+Route::post('import', 'back\Api\EventController@import')->name('import');
 
 
 //Event-add

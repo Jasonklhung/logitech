@@ -419,7 +419,79 @@ $privacy1 = '感謝您參與本次活動，您個人的隱私權，主辦單位�
 				</div>
 				<div class="modal-body pd-top-30">
 					<div class="x-center">
-						<p>恭喜您，資料已成功送出！</p>
+						<p>恭喜您,資料已成功送出!</p>
+						<!-- 原本部分(註解開始) -->
+						<!-- <p>您可以至 "會員專區>登錄查詢" 查看所有登錄活動。</p> -->
+						<!-- 原本部分(註解結束) -->
+						
+						<!-- 舊換新部分開始 -->
+						
+						<!-- <p>請點擊「發送活動簡訊」且確認您的手機及Email信箱，是否收到優惠簡訊內容，並依指示完成兌換動作。</p> -->
+
+						<!-- 舊換新部分結束 -->  		
+					</div>
+				</div>
+				<div class="modal-footer modal-noborder x-center">
+					<!-- <button type="submit" class="btn btn-default main-button" data-dismiss="modal">回到活動頁</button> -->
+					
+						<button type="submit" class="btn btn-default main-button" onclick="reload()">回到活動頁</button>
+					
+						<!-- button type="submit" class="btn btn-default main-button" onclick="goExchange('')">發送活動簡訊</button> -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--前30 -->
+	<div class="modal fade modal-style1" id="success13" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header modal-noborder modal-header-color">
+					<button type="button" class="close" data-dismiss="modal" onclick="reload()">&times;</button>
+					<h4 class="modal-title modal-h4"><span class="lnr lnr-thumbs-up" style="font-size: 16px"></span> 登錄成功</h4>
+				</div>
+				<div class="modal-body pd-top-30">
+					<div class="x-center">
+						<p>恭喜您,資料已成功送出!</p>
+						<p>恭喜您已完成『4/19羅技Ｘ門前隱味專屬用餐日』與萬元好禮抽獎活動登錄。
+您的用餐資格為正取,我們會再核對您的資料,確認無誤後將於3/31前通知您用餐時段,麻煩您於4/6前確認是否參加,謝謝。</p>
+						<!-- 原本部分(註解開始) -->
+						<!-- <p>您可以至 "會員專區>登錄查詢" 查看所有登錄活動。</p> -->
+						<!-- 原本部分(註解結束) -->
+						
+						<!-- 舊換新部分開始 -->
+						
+						<!-- <p>請點擊「發送活動簡訊」且確認您的手機及Email信箱，是否收到優惠簡訊內容，並依指示完成兌換動作。</p> -->
+
+						<!-- 舊換新部分結束 -->  		
+					</div>
+				</div>
+				<div class="modal-footer modal-noborder x-center">
+					<!-- <button type="submit" class="btn btn-default main-button" data-dismiss="modal">回到活動頁</button> -->
+					
+						<button type="submit" class="btn btn-default main-button" onclick="reload()">回到活動頁</button>
+					
+						<!-- button type="submit" class="btn btn-default main-button" onclick="goExchange('')">發送活動簡訊</button> -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 後30 -->
+	<div class="modal fade modal-style1" id="success133" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header modal-noborder modal-header-color">
+					<button type="button" class="close" data-dismiss="modal" onclick="reload()">&times;</button>
+					<h4 class="modal-title modal-h4"><span class="lnr lnr-thumbs-up" style="font-size: 16px"></span> 登錄成功</h4>
+				</div>
+				<div class="modal-body pd-top-30">
+					<div class="x-center">
+						<p>恭喜您,資料已成功送出!</p>
+						<p>恭喜您已完成『4/19羅技Ｘ門前隱味專屬用餐日』與萬元好禮抽獎活動登錄。
+您的用餐資格為候補,如有候補成功,我們將在4/10前與您聯繫，謝謝。</p>
 						<!-- 原本部分(註解開始) -->
 						<!-- <p>您可以至 "會員專區>登錄查詢" 查看所有登錄活動。</p> -->
 						<!-- 原本部分(註解結束) -->

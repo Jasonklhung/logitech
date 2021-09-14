@@ -25,6 +25,8 @@ class EventController extends Controller
     	$event = $this->eventRepository
     			->getAllActivity();
 
+        dd(123);
+
     	return view('back/event/event',compact('today','event'));
     }
 

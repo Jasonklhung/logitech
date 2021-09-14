@@ -66,4 +66,9 @@ class LoginController extends Controller
     	Auth::guard('web')->logout();
     	return back();
     }
+
+    public function qrcode()
+    {
+      return view('auth.qrcode');
+    }
 }

@@ -83,7 +83,7 @@ class MemberRepository
 	public function memberActivity($id)
 	{
 		return $this->consumer
-				->select('aActivities.aTitle as title','aProductList.pName as product','aActivities.id as id','aActivities.aCreateDateTime as regTime','aActivities.aEndDate as endDate')
+				->select('aActivities.aTitle as title','aProductList.pName as product','aActivities.id as id','aRegister.rCreateDateTime as regTime','aActivities.aEndDate as endDate','aRegister.rQuantity as quantity')
 				->leftJoin('aRegister','aRegister.rConsumer','=','aConsumer.id')
 				->leftJoin('aActivities','aActivities.id','=','aRegister.rActivity')
 				->leftJoin('aProductList','aProductList.pId','=','aRegister.rProduct')

@@ -39,7 +39,7 @@
 						</div>
 						<p>{{explode(' ',$data->aEndRegister)[0]}}止</p>
 						<p><h5 class="shares">
-							<a href="Javascript:void(0);" onclick="heateorSssPopup('https://www.facebook.com/sharer/sharer.php?u=https://www.logitech-event.com.tw/event/event-info/{{$data->id}}','{{$data->id}}')">
+							<a href="Javascript:void(0);" onclick="heateorSssPopup('https://www.facebook.com/dialog/share?app_id=210518683208429&display=page&href=https://www.logitech-event.com.tw/event/event-info/{{$data->id}}','{{$data->id}}')">
 								<div class="icon-frame">
 									<img src="{{ url("img/fb_share2.jpg") }}">
 								</div>
@@ -57,25 +57,39 @@
 						</h5></p>
 					</div>
 					<div class="info">
-						@if($data->aEndRegister < $today)
-						<a class="btn btn-default award-button" type="button" data-toggle="modal" onclick="showAward('{{ $data->id }}');">得獎名單</a>
-						@else
-							@auth
-								@if(Auth::guard('web')->user()->cAuthOK == 'Y')
-								<a class="btn btn-default main-button" type="button" data-toggle="modal" href="#agree">我要登錄</a>
-								@else
-								<a class="btn btn-default main-button" type="button" id="AuthFalied">我要登錄</a>
-								<input hidden="" id="Authcel" value="{{Auth::guard('web')->user()->cMobile}}">
-								<input hidden="" id="Authid" value="{{Auth::guard('web')->user()->id}}">
-								@endif
-							@endauth
-							
-							@guest
-							<a class="btn btn-default main-button" type="button" data-toggle="modal" href="#pleaselogin">我要登錄</a>
-							@endguest
-						<a class="btn btn-default award-button" type="button" data-toggle="modal" onclick="showAward('{{ $data->id }}');">得獎名單</a>
-						@endif
-					</div>
+				      @if($data->aEndRegister < $today)
+				      @php
+				       date_default_timezone_set("Asia/Taipei");
+
+				       if(date('Y-m-d H:i:s', strtotime('2019-09-15 19:00:00')) < date('Y-m-d H:i:s', strtotime('now')) & $data->id == 10){
+				      @endphp
+				        <a class="btn btn-default award-button" type="button" data-toggle="modal" href="#award-modal">得獎名單</a>
+				      @php
+				       }
+				       else{
+				      @endphp
+				        <a class="btn btn-default award-button" type="button" data-toggle="modal" onclick="showAward('{{ $data->id }}');">得獎名單</a>
+				      @php
+				        
+				       }
+				      @endphp
+				      @else
+				       @auth
+				        @if(Auth::guard('web')->user()->cAuthOK == 'Y')
+				        <a class="btn btn-default main-button" type="button" data-toggle="modal" href="#agree">我要登錄</a>
+				        @else
+				        <a class="btn btn-default main-button" type="button" id="AuthFalied">我要登錄</a>
+				        <input hidden="" id="Authcel" value="{{Auth::guard('web')->user()->cMobile}}">
+				        <input hidden="" id="Authid" value="{{Auth::guard('web')->user()->id}}">
+				        @endif
+				       @endauth
+				       
+				       @guest
+				       <a class="btn btn-default main-button" type="button" data-toggle="modal" href="#pleaselogin">我要登錄</a>
+				       @endguest
+				      <a class="btn btn-default award-button" type="button" data-toggle="modal" onclick="showAward('{{ $data->id }}');">得獎名單</a>
+				      @endif
+				     </div>
 					<!-- <div class="info block" style="display: none;"> -->
 					<div class="info block">
 						<p class="gray-font">備註說明</p>
@@ -87,6 +101,44 @@
 						<img src="../../{{ substr($data->aImage,1) }}" alt="">
 					</div>
 				</div>
+				<!-- 20200214 通路切版(曾) -->
+				@if( $data->id == '13')
+				<div class="col-md-12 col-xs-12 logo-group">
+					<div class="logo-r">
+						<a href="https://store.logitech.tw/" onclick="recordStoreClick('25')" class="shop" target="_blank">
+							<img src="/img/logo-0.png" alt="羅技官方旗艦店">
+						</a>
+						<a href="https://lihi1.cc/2CwA6" onclick="recordStoreClick('28')" class="shop" target="_blank">
+							<img src="/img/logo-1.png" alt="PChome">
+						</a>
+						<a href="https://lihi1.cc/UOJH9" onclick="recordStoreClick('29')" class="shop" target="_blank">
+							<img src="/img/logo-3.png" alt="Yahoo">
+						</a>
+						<a href="https://lihi1.cc/08tf8" onclick="recordStoreClick('30')" class="shop" target="_blank">
+							<img src="/img/logo-5.png" alt="MOMO">
+						</a>
+						<a href="https://lihi1.cc/IJKQS" onclick="recordStoreClick('31')" class="shop" target="_blank">
+							<img src="/img/logo-7.png" alt="蝦皮">
+						</a>
+						<a href="https://lihi1.cc/nsXQZ" onclick="recordStoreClick('34')" class="shop" target="_blank">
+							<img src="/img/logo-2.png" alt="燦坤">
+						</a>
+						<a href="https://lihi1.com/CyZvC" onclick="recordStoreClick('37')" class="shop" target="_blank">
+							<img src="/img/logo-4.png" alt="三井3C">
+						</a>
+						<a href="https://lihi1.cc/ioq2u" onclick="recordStoreClick('36')" class="shop" target="_blank">
+							<img src="/img/logo-6.png" alt="良興購物網">
+						</a>
+						<a href="https://lihi1.cc/nfOrB" onclick="recordStoreClick('35')" class="shop" target="_blank">
+							<img src="/img/logo-8.png" alt="順發3C">
+						</a>
+						<a href="https://lihi1.com/2x3pb" onclick="recordStoreClick('32')" class="shop" target="_blank">
+							<img src="/img/logo-9.png" alt="UDN">
+						</a>
+					</div>
+				</div>
+				@endif
+				<!-- 20200214 通路切版(曾) -->
 				@if( $data->id == '11')
 				<ul class="ss-store">
 					<li><a href="https://24h.pchome.com.tw/store/DSAR4Z" onclick="recordStoreClick('28')" target="_blank"><img src="../../img/pchome.png" height="40"></a></li>
@@ -146,7 +198,11 @@
                     <h4 class="modal-h4"><span class="lnr lnr-select" style="font-size: 16px"></span> 登錄活動</h4>
                 </div>
                 <div class="modal-body pd-top-30">
+                	@if ($event[0]['id'] == '13')
+                	<form id="applyForm13">
+                	@else
                     <form id="applyForm">
+                    @endif
                     	@csrf
 
                     	<div class="alert alert-danger">
@@ -220,10 +276,10 @@
                                     </div>
                         		</td>
                         	</tr>
-                        	<tr>
+                        	<!-- <tr>
                         		<td><span>* </span>購買方式</td>
                                 <td><input type="radio" class="realstore" id="realstore" name="buyway" value="實體店面" checked="">實體店面 <input type="radio" class="netstore" id="netstore" name="buyway" value="網路電商">網路電商</td>
-                            </tr>
+                            </tr> -->
                         @if($event[0]['aInvoice'] == 11 || $event[0]['aInvoice'] == 01)
                         	<tr>
                         		<td><span>* </span>發票號碼</td>
@@ -286,8 +342,17 @@
 								</td>
 							</tr>
 						@else($event[0]['aMode'] == 'P')
+							@if($event[0]['id'] == '13' || $event[0]['id'] == '14')
 							<tr>
+								<td><span></span>是否使用網購</td>
+								<td><input type="checkbox" name="netbuy" id="netbuy"></td>
+							</tr>
+							<tr>
+								@if($event[0]['id'] == '14')
+								<td id="numberTR5"><span> </span>選擇實體購買通路</td>
+								@else
 								<td id="numberTR5"><span>* </span>選擇實體購買通路</td>
+								@endif
 								<td id="numberTR6">
 									<div class="input_group">
 										<select class="form-control" id="storePurchase2" name="storePurchase2">
@@ -313,15 +378,11 @@
 								</td>
 							</tr>
 							<tr>
-								<td style="display: none"><span style="display: none">* </span>是否使用網購</td>
-								<td style="display: none"><input type="checkbox" name="netbuy" id="netbuy" style="display: none"></td>
-							</tr>
-							<tr>
 								<td style="display: none" id="numberTR1"><span>* </span>訂單編號</td>
 								<td style="display: none" id="numberTR2"><input type="text" name="applyNumber" id="applyNumber" class="form-control" value=""></td>
 							</tr>
 							<tr>
-								<td><span>* </span>選擇登錄產品</td>
+								<td><span>*</span>選擇登錄產品</td>
                                 <td>
                                     <div class="input_group product-info">
 
@@ -338,10 +399,21 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                             	<td>贈品圖</td>
                             	<td><img id="productImage"></td>
+                            </tr> -->
+                            <tr>
+                        		<td><span>* </span>數量</td>
+                                <td><input type="text" name="rQuantity" class="form-control" value=""></td>
                             </tr>
+                            @endif
+                            @if($event[0]['id'] == '12')
+                            <tr>
+                        		<td><span>* </span>數量</td>
+                                <td><input type="text" name="rQuantity" class="form-control" value=""></td>
+                            </tr>
+                            @endif
                         @endif
 						</table>
                 </div>

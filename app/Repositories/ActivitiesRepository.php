@@ -32,8 +32,8 @@ class ActivitiesRepository
 				->select('aActivities.*','aActivityMeta.aDescription','aActivityMeta.aSubject')
 				->leftJoin('aActivityMeta','aActivityMeta.aActivity','=','aActivities.id')
 				->where('aStatus','Y')
-				->where('aStartDate','<=',$date)
-				->where('aEndDate','>',$date)
+				->whereDate('aStartDate','<=',$date)
+				->whereDate('aEndDate','>=',$date)
 				->orderBy('id','desc')
 				->get();
 	}
@@ -42,8 +42,8 @@ class ActivitiesRepository
 	{
 		return $this->siders
 				->where('sStatus','Y')
-				->where('sStartDate','<=',$today)
-				->where('sEndDate','>',$today)
+				->whereDate('sStartDate','<=',$today)
+				->whereDate('sEndDate','>=',$today)
 				->Orderby('aId','desc')
 				->get();
 	}

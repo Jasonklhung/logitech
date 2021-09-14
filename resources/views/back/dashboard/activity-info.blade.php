@@ -86,6 +86,7 @@
 										<thead>
 											<tr>
 												<th>型號</th>
+												<th>筆數</th>
 												<th>數量</th>
 											</tr>
 										</thead>
@@ -94,6 +95,7 @@
 											<tr>
 												<td>{{$data->pName}}</td>
 												<td>{{$data->count}}</td>
+												<td>{{$data->sum}}</td>
 											</tr>
 											@endforeach
 										</tbody>

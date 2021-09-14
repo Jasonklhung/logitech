@@ -231,7 +231,7 @@ class EventRepository
 	}
 
 	//登錄發票-活動
-	public function InsertEvent($aId,$id,$productName,$ownBrand,$netnumber,$applyInvoice,$upload,$store,$array)
+	public function InsertEvent($aId,$id,$productName,$ownBrand,$netnumber,$applyInvoice,$upload,$store,$array,$rQuantity,$rank)
 	{
 		return $this->register
 				->insert(
@@ -243,7 +243,9 @@ class EventRepository
 					 'rInvoiceNo' => $applyInvoice,
 					 'rInvoiceImage' => $upload,
 					 'rStore'=>$store,
-					 'rData' => $array]
+					 'rData' => $array,
+					 'rQuantity'=>$rQuantity,
+					 'rank'=>$rank]
 				);
 	}
 

@@ -697,7 +697,7 @@ footer p{
 }
 
 .section.event-info{
-	background-color: #b6d8f5;
+	background-color: #fbf5bc;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -1445,4 +1445,8 @@ z-index: 1;
 	border: none;
 	color: #00b8fc;
     background-color: transparent;
+}
+
+.text-area a{
+   word-break: break-all;
 }

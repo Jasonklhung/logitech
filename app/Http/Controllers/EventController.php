@@ -8,6 +8,8 @@ use App\Repositories\ActivitiesRepository;
 use Carbon\Carbon;
 use Auth;
 use DB;
+use Illuminate\Support\Facades\Redirect;
+use App\Vedio;
 
 class EventController extends Controller
 {
@@ -94,5 +96,72 @@ class EventController extends Controller
         //dd($event);
 
     	return view('logitech/event/event-info',compact('event','today','city','zip','product','store','realstore','register','css','activities'));
+    }
+
+    public function video()
+    {
+        if(Auth::guard('web')->id()){
+            $zid = Auth::guard('web')->id();
+            
+        }
+        else{
+             $zid = '1';
+        }
+        
+        $today = Carbon::now()->format('Y-m-d');
+
+        $city = $this->eventRepository
+                ->getcity();
+
+        $siders = $this->eventRepository
+                ->getSiders($today);
+
+        $css = $this->eventRepository
+                ->getcss();
+
+        $activities = $this->activitiesRepository
+                ->getActivity($today);
+
+        return view('logitech/event/vedio',compact('city','siders','css','activities'));
+    }
+
+    public function redirect()
+    {
+
+        return Redirect::to('https://bot-event.accunix.net/logitech/fb/pa.php');
+    }
+
+    public function redirect2()
+    {
+
+        return Redirect::to('https://bot-event.accunix.net/logitech/fb/pa2.php');
+    }
+
+    public function FBstore(Request $request)
+    {
+        $fb = new Vedio;
+        $fb->fb_id = $request->fb_uid;
+        $fb->fb_name = $request->fb_user;
+        $fb->fb_mail = $request->fb_email;
+        $fb->save();
+
+        return Redirect::to('https://www.facebook.com/dialog/share?app_id=503275966748258&display=page&href=https://youtu.be/q9zVSWa_DoE&redirect_uri=https://www.logitech-event.com.tw/event/event-info/13/video');
+    }
+
+    public function FBstore2(Request $request)
+    {
+        $fb = new Vedio;
+        $fb->fb_id = $request->fb_uid;
+        $fb->fb_name = $request->fb_user;
+        $fb->fb_mail = $request->fb_email;
+        $fb->save();
+
+        return Redirect::to('https://www.facebook.com/dialog/share?app_id=503275966748258&display=page&href=https://youtu.be/ZhK8Lt_2Yz4&redirect_uri=https://www.logitech-event.com.tw/event/event-info/13/video');
+    }
+
+    public function fb()
+    {
+
+        return view('logitech/event/fb');
     }
 }

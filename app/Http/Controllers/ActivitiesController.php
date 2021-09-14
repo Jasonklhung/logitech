@@ -26,7 +26,8 @@ class ActivitiesController extends Controller
              $id = Auth::guard('web')->id();
         }
 
-    	$today = Carbon::now()->format('Y-m-d');
+    	$today = Carbon::now()->format('Y-m-d 00:00:00');
+
 
     	$activities = $this->activitiesRepository
     			->getActivity($today);

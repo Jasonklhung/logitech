@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use DB;
 
+use App\Imports\RegisterImport;
 use App\Exports\ActivityExport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -74,6 +75,13 @@ class EventController extends Controller
 
             return (new ActivityExport)->search($id,$start,$end)->download($today.'_logitech.xlsx');
 
+    }
+
+    public function import(Request $request)
+    {
+        Excel::import(new RegisterImport, request()->file('import'));
+
+        return 'ok';
     }
 
 

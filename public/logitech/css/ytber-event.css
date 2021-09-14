@@ -1,0 +1,137 @@
+.ytber-page {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background: url(../img/ytber_bg-3.png) no-repeat center 25%, url(../img/ytber_bg-5.png) repeat-x center top, url(../img/ytber_bg-4.png) repeat-y center bottom;
+    background-size: 100% auto, auto 400px, 100% auto;
+}
+
+.ytber-banner {
+    margin-top: 68px;
+}
+
+.ytber-banner img,
+.ytber-content img {
+    width: 100%;
+    height: 100%;
+}
+
+.ytber-content .line,
+.ytber-video .line {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.ytber-content {
+    padding-bottom: 100px;
+}
+
+.ytber-content .row, .ytber .share {
+    font-size: 0;
+    /* 為了解決子層掉下去的問題 */
+}
+
+.ytber-content .text {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.ytber-content .text p,
+.ytber-video .text {
+    margin: 15px 0;
+    text-align: justify;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.vcenter {
+    display: inline-block;
+    float: none;
+    vertical-align: middle;
+}
+
+.ytber-video hr {
+    margin: 10px 0;
+    border-top: 1px solid #805c5c;
+}
+
+.ytber-video {
+    padding-top: 100px;
+}
+
+.ytber-video h4 {
+    margin-top: 15px;
+    margin-bottom: 4px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.ytber-video .row.content {
+    margin-top: 50px;
+}
+
+.ytber-video .row .col-sm-6.ytber {
+    margin-bottom: 50px;
+}
+.ytber .share p{
+    font-size: 15px;
+    margin-bottom: 0;
+}
+.ytber .share a{
+    font-size: 15px;
+    color: #fff;
+    background: #FF2947;
+    padding: 5px 10px;
+    border-radius: 5px;
+    float: right;
+    margin-top: 10px;
+}
+.ytber .share a:hover{
+    background: rgb(219, 37, 61);
+}
+
+/* iframe設定 */
+.yt-wrap {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 56%;
+    width: 100%;
+    height: 0;
+}
+
+.yt-wrap iframe,
+.yt-wrap object,
+.yt-wrap embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .ytber-banner {
+        margin-top: 50px;
+    }
+    .ytber-video {
+        padding-top: 30px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .ytber-page {
+        background: url(../img/ytber_bg-3.png) no-repeat center 25%, url(../img/ytber_bg-5.png) repeat-x center top, url(../img/ytber_bg-4.png) repeat-y center bottom;
+        background-size: 100% auto, auto 52vh, 100% auto;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .ytber-page {
+        padding-top: 5%;
+        padding-bottom: 5%;
+        background: url(../img/ytber_bg-3.png) no-repeat center 25%, url(../img/ytber_bg-5.png) repeat-x center top, url(../img/ytber_bg-4.png) repeat-y center bottom;
+        background-size: 100% auto, auto 450px, 100% auto;
+    }
+    .ytber-video {
+        padding-top: 0px;
+    }
+}

@@ -13,6 +13,7 @@ use App\StoreClick;
 use App\ActivityClick;
 use App\ShareClick;
 use DB;
+use App\Register;
 
 class EventController extends Controller
 {
@@ -20,48 +21,48 @@ class EventController extends Controller
 
     public function __construct(EventRepository $eventRepository)
     {
-    	$this->eventRepository = $eventRepository;
+        $this->eventRepository = $eventRepository;
     }
 
     public function allevent()
     {
         $today = Carbon::now()->format('Y-m-d');
 
-    	$event = $this->eventRepository
-    			->getAllActivity($today);
+        $event = $this->eventRepository
+                ->getAllActivity($today);
 
-    	return $event;
+        return $event;
     }
 
     public function playing()
     {
-    	$today = Carbon::now()->format('Y-m-d');
+        $today = Carbon::now()->format('Y-m-d');
 
-    	$event = $this->eventRepository
-    			->getplayActivity($today);
+        $event = $this->eventRepository
+                ->getplayActivity($today);
 
-    	return $event;
+        return $event;
     }
 
     public function ending()
     {
-    	$today = Carbon::now()->format('Y-m-d');
+        $today = Carbon::now()->format('Y-m-d');
 
-    	$event = $this->eventRepository
-    			->getendActivity($today);
+        $event = $this->eventRepository
+                ->getendActivity($today);
 
-    	return $event;
+        return $event;
     }
 
     public function searchActivities(Request $request)
     {
-    	$today = Carbon::now()->format('Y-m-d');
-    	$date = $request->date;
+        $today = Carbon::now()->format('Y-m-d');
+        $date = $request->date;
 
-    	$event = $this->eventRepository
-    			->getsearchActivity($date,$today);
+        $event = $this->eventRepository
+                ->getsearchActivity($date,$today);
 
-    	return $event;
+        return $event;
     }
 
     public function showAward(Request $request)
@@ -127,13 +128,14 @@ class EventController extends Controller
                 if($request->netbuy){
                    $validator = Validator::make($request->all(),
                     [
-                        'upload'=>'required|mimes:gif,jpg,jpeg,png',
+                        'upload'=>'required|mimes:gif,jpg,jpeg,png|max:100000',
                         'productCategory'=>'required',
                         'productName'=>'required',
                         'ownBrand'=>'required',
                     ],
                     [
                         'upload.required'=>'請上傳發票圖檔',
+                        'upload.max'=>'請上傳檔案大小低於1M的圖片',
                         'upload.mimes'=>'請上傳正確的圖片格式 Ex:jpg,jpeg,png',
                         'productCategory.required'=>'請選擇產品',
                         'productName.required'=>'請選擇型號',
@@ -143,7 +145,7 @@ class EventController extends Controller
                 else{
                     $validator = Validator::make($request->all(),
                     [
-                        'upload'=>'required|mimes:gif,jpg,jpeg,png',
+                        'upload'=>'required|mimes:gif,jpg,jpeg,png|max:100000',
                         'productCategory'=>'required',
                         'productName'=>'required',
                         'ownBrand'=>'required',
@@ -151,6 +153,7 @@ class EventController extends Controller
                     ],
                     [
                         'upload.required'=>'請上傳發票圖檔',
+                        'upload.max'=>'請上傳檔案大小低於1M的圖片',
                         'upload.mimes'=>'請上傳正確的圖片格式 Ex:jpg,jpeg,png',
                         'productCategory.required'=>'請選擇產品',
                         'productName.required'=>'請選擇型號',
@@ -204,7 +207,7 @@ class EventController extends Controller
                     $validator = Validator::make($request->all(),
                     [
                         'applyInvoice'=>'required|regex:/^[A-Z]{2}+[0-9]{8}/',
-                        'upload'=>'required|mimes:gif,jpg,jpeg,png',
+                        'upload'=>'required|mimes:gif,jpg,jpeg,png|max:100000',
                         'productCategory'=>'required',
                         'productName'=>'required',
                         'ownBrand'=>'required',
@@ -213,6 +216,7 @@ class EventController extends Controller
                         'applyInvoice.required' => '請填寫發票號碼',
                         'applyInvoice.regex'=>'請填寫正確的發票號碼格式 EX:AB12345678',
                         'upload.required'=>'請上傳發票圖檔',
+                        'upload.max'=>'請上傳檔案大小低於1M的圖片',
                         'upload.mimes'=>'請上傳正確的圖片格式 Ex:jpg,jpeg,png',
                         'productCategory.required'=>'請選擇產品',
                         'productName.required'=>'請選擇型號',
@@ -223,7 +227,7 @@ class EventController extends Controller
                     $validator = Validator::make($request->all(),
                     [
                         'applyInvoice'=>'required|regex:/^[A-Z]{2}+[0-9]{8}/',
-                        'upload'=>'required|mimes:gif,jpg,jpeg,png',
+                        'upload'=>'required|mimes:gif,jpg,jpeg,png|max:100000',
                         'productCategory'=>'required',
                         'productName'=>'required',
                         'ownBrand'=>'required',
@@ -233,6 +237,7 @@ class EventController extends Controller
                         'applyInvoice.required' => '請填寫發票號碼',
                         'applyInvoice.regex'=>'請填寫正確的發票號碼格式 EX:AB12345678',
                         'upload.required'=>'請上傳發票圖檔',
+                        'upload.max'=>'請上傳檔案大小低於1M的圖片',
                         'upload.mimes'=>'請上傳正確的圖片格式 Ex:jpg,jpeg,png',
                         'productCategory.required'=>'請選擇產品',
                         'productName.required'=>'請選擇型號',
@@ -275,7 +280,7 @@ class EventController extends Controller
                 if($request->netbuy){
                     $validator = Validator::make($request->all(),
                     [
-                        'upload'=>'required|mimes:gif,jpg,jpeg,png',
+                        'upload'=>'required|mimes:gif,jpg,jpeg,png|max:100000',
                         'productCategory'=>'required',
                         'productName'=>'required',
                         'applyNumber'=>'required',
@@ -283,6 +288,7 @@ class EventController extends Controller
                     [
                         'upload.required'=>'請上傳發票圖檔',
                         'upload.mimes'=>'請上傳正確的圖片格式 Ex:jpg,jpeg,png',
+                        'upload.max'=>'請上傳檔案大小低於1M的圖片',
                         'applyNumber.required'=>'請填寫訂單編號',
                         'productCategory.required'=>'請選擇產品',
                         'productName.required'=>'請選擇型號',
@@ -291,13 +297,14 @@ class EventController extends Controller
                 else{
                     $validator = Validator::make($request->all(),
                     [
-                        'upload'=>'required|mimes:gif,jpg,jpeg,png',
+                        'upload'=>'required|mimes:gif,jpg,jpeg,png|max:100000',
                         'productCategory'=>'required',
                         'productName'=>'required',
                     ],
                     [
                         'upload.required'=>'請上傳發票圖檔',
                         'upload.mimes'=>'請上傳正確的圖片格式 Ex:jpg,jpeg,png',
+                        'upload.max'=>'請上傳檔案大小低於1M的圖片',
                         'productCategory.required'=>'請選擇產品',
                         'productName.required'=>'請選擇型號',
                     ]);
@@ -339,44 +346,127 @@ class EventController extends Controller
             else{
 
                 if($request->netbuy){
-                     $validator = Validator::make($request->all(),
-                    [
-                        'applyInvoice'=>'required|regex:/^[A-Z]{2}+[0-9]{8}/',
-                        'upload'=>'required|mimes:gif,jpg,jpeg,png',
-                        'productCategory'=>'required',
-                        'productName'=>'required',
-                        'applyNumber'=>'required',
-                        'storePurchase'=>'required',
-                    ],
-                    [
-                        'applyInvoice.required' => '請填寫發票號碼',
-                        'applyInvoice.regex'=>'請填寫正確的發票號碼格式 EX:AB12345678',
-                        'upload.required'=>'請上傳發票圖檔',
-                        'upload.mimes'=>'請上傳正確的圖片格式 Ex:jpg,jepg,png',
-                        'storePurchase.required'=>'請選擇經銷商',
-                        'applyNumber.required'=>'請填寫訂單編號',
-                        'productCategory.required'=>'請選擇產品',
-                        'productName.required'=>'請選擇型號',
-                    ]);
+
+                    if($request->aId == '13'){
+                        $validator = Validator::make($request->all(),
+                            [
+                                'applyInvoice'=>'required|regex:/^[A-Z]{2}+[0-9]{8}/',
+                                'upload'=>'required|mimes:gif,jpg,jpeg,png|max:100000',
+                                'productCategory'=>'required',
+                                'productName'=>'required',
+                                'applyNumber'=>'required',
+                                'storePurchase'=>'required',
+                                'rQuantity'=>'required',
+                            ],
+                            [
+                                'applyInvoice.required' => '請填寫發票號碼',
+                                'applyInvoice.regex'=>'請填寫正確的發票號碼格式 EX:AB12345678',
+                                'upload.max'=>'請上傳檔案大小低於1M的圖片',
+                                'upload.required'=>'請上傳發票圖檔',
+                                'upload.mimes'=>'請上傳正確的圖片格式 Ex:jpg,jepg,png',
+                                'storePurchase.required'=>'請選擇經銷商',
+                                'applyNumber.required'=>'請填寫訂單編號',
+                                'productCategory.required'=>'請選擇產品',
+                                'productName.required'=>'請選擇型號',
+                                'rQuantity.required'=>'請填寫數量',
+                            ]);
+                    }
+                    else{
+                        $validator = Validator::make($request->all(),
+
+                            [
+                                'applyInvoice'=>'required|regex:/^[A-Z]{2}+[0-9]{8}/',
+                                'upload'=>'required|mimes:gif,jpg,jpeg,png|max:100000',
+                        // 'productCategory'=>'required',
+                        // 'productName'=>'required',
+                                'applyNumber'=>'required',
+                                'storePurchase'=>'required',
+                                'rQuantity'=>'required',
+                            ],
+                            [
+                                'applyInvoice.required' => '請填寫發票號碼',
+                                'applyInvoice.regex'=>'請填寫正確的發票號碼格式 EX:AB12345678',
+                                'upload.max'=>'請上傳檔案大小低於1M的圖片',
+                                'upload.required'=>'請上傳發票圖檔',
+                                'upload.mimes'=>'請上傳正確的圖片格式 Ex:jpg,jepg,png',
+                                'storePurchase.required'=>'請選擇經銷商',
+                                'applyNumber.required'=>'請填寫訂單編號',
+                        // 'productCategory.required'=>'請選擇產品',
+                        // 'productName.required'=>'請選擇型號',
+                                'rQuantity.required'=>'請填寫數量',
+                            ]);
+                    }
+
+                     
                 }
                 else{
-                     $validator = Validator::make($request->all(),
-                    [
-                        'applyInvoice'=>'required|regex:/^[A-Z]{2}+[0-9]{8}/',
-                        'upload'=>'required|mimes:gif,jpg,jpeg,png',
-                        'productCategory'=>'required',
-                        'productName'=>'required',
-                        'storePurchase2'=>'required',
-                    ],
-                    [
-                        'applyInvoice.required' => '請填寫發票號碼',
-                        'applyInvoice.regex'=>'請填寫正確的發票號碼格式 EX:AB12345678',
-                        'upload.required'=>'請上傳發票圖檔',
-                        'upload.mimes'=>'請上傳正確的圖片格式 Ex:jpg,jepg,png',
-                        'storePurchase2.required'=>'請選擇經銷商',
-                        'productCategory.required'=>'請選擇產品',
-                        'productName.required'=>'請選擇型號',
-                    ]);
+
+                    if($request->aId == '14'){
+                        $validator = Validator::make($request->all(),
+                            [
+                                'applyInvoice'=>'required|regex:/^[A-Z]{2}+[0-9]{8}/',
+                                'upload'=>'required|mimes:gif,jpg,jpeg,png',
+                                // 'productCategory'=>'required',
+                                // 'productName'=>'required',
+                                'storePurchase2'=>'required',
+                                'rQuantity'=>'required',
+                            ],
+                            [
+                                'applyInvoice.required' => '請填寫發票號碼',
+                                'applyInvoice.regex'=>'請填寫正確的發票號碼格式 EX:AB12345678',
+                                //'upload.max'=>'請上傳檔案大小低於1M的圖片',
+                                'upload.required'=>'請上傳發票圖檔',
+                                'upload.mimes'=>'請上傳正確的圖片格式 Ex:jpg,jepg,png',
+                                'storePurchase2.required'=>'請選擇經銷商',
+                                // 'productCategory.required'=>'請選擇產品',
+                                // 'productName.required'=>'請選擇型號',
+                                'rQuantity.required'=>'請填寫數量',
+                            ]);
+                    }
+                    if($request->aId == '13'){
+                        $validator = Validator::make($request->all(),
+                            [
+                                'applyInvoice'=>'required|regex:/^[A-Z]{2}+[0-9]{8}/',
+                                'upload'=>'required|mimes:gif,jpg,jpeg,png',
+                                'productCategory'=>'required',
+                                'productName'=>'required',
+                                'storePurchase2'=>'required',
+                                'rQuantity'=>'required',
+                            ],
+                            [
+                                'applyInvoice.required' => '請填寫發票號碼',
+                                'applyInvoice.regex'=>'請填寫正確的發票號碼格式 EX:AB12345678',
+                                'upload.max'=>'請上傳檔案大小低於1M的圖片',
+                                'upload.required'=>'請上傳發票圖檔',
+                                'upload.mimes'=>'請上傳正確的圖片格式 Ex:jpg,jepg,png',
+                                'storePurchase2.required'=>'請選擇經銷商',
+                                'productCategory.required'=>'請選擇產品',
+                                'productName.required'=>'請選擇型號',
+                                'rQuantity.required'=>'請填寫數量',
+                            ]);
+                    }
+                    else{
+                        $validator = Validator::make($request->all(),
+                            [
+                                'applyInvoice'=>'required|regex:/^[A-Z]{2}+[0-9]{8}/',
+                                'upload'=>'required|mimes:gif,jpg,jpeg,png',
+                                'rQuantity'=>'required',
+                                // 'productCategory'=>'required',
+                                // 'productName'=>'required',
+                                // 'storePurchase2'=>'required',
+                            ],
+                            [
+                                'applyInvoice.required' => '請填寫發票號碼',
+                                'applyInvoice.regex'=>'請填寫正確的發票號碼格式 EX:AB12345678',
+                                //'upload.max'=>'請上傳檔案大小低於1M的圖片',
+                                'upload.required'=>'請上傳發票圖檔',
+                                'upload.mimes'=>'請上傳正確的圖片格式 Ex:jpg,jepg,png',
+                                'rQuantity.required'=>'請填寫數量',
+                                // 'storePurchase2.required'=>'請選擇經銷商',
+                                // 'productCategory.required'=>'請選擇產品',
+                                // 'productName.required'=>'請選擇型號',
+                            ]);
+                    }
                 }
             }
         }
@@ -415,13 +505,53 @@ class EventController extends Controller
                 }
 
                 $applyInvoice = $request->applyInvoice;
+                $rQuantity = $request->rQuantity;
                 //$store = $request->storePurchase;
 
                 //$QRmode = $request->aQRmode;
 
+                $rank = null;
 
-                $this->eventRepository
-                ->InsertEvent($aId,$id,$productName,$ownBrand,$netnumber,$applyInvoice,$upload,$store,$array);
+                if($request->productName == '48' || $request->productName == '49'){
+
+                    $re = Register::where('rActivity','13')->whereIn('rProduct',['48','49'])->get();
+
+                    if($re->isEmpty()){
+
+                        $rank = '1';
+
+                        $this->eventRepository
+                        ->InsertEvent($aId,$id,$productName,$ownBrand,$netnumber,$applyInvoice,$upload,$store,$array,$rQuantity,$rank);
+
+                        return response()->json(['success'=>['can']]);
+                    }
+                    else{
+
+                        foreach ($re as $key => $value) {
+                            if($key == count($re) - 1 ){
+
+                                $rank = count($re)+1;
+
+                                $this->eventRepository
+                                ->InsertEvent($aId,$id,$productName,$ownBrand,$netnumber,$applyInvoice,$upload,$store,$array,$rQuantity,$rank);
+                            }
+                        }
+
+                        if($rank <= 28){
+                            return response()->json(['success'=>['can']]);
+                        }
+                        else{
+                            return response()->json(['success'=>['cant']]);
+                        }
+                    }
+                }
+                else{
+                    $this->eventRepository
+                    ->InsertEvent($aId,$id,$productName,$ownBrand,$netnumber,$applyInvoice,$upload,$store,$array,$rQuantity,$rank);
+
+                    return response()->json(['success'=>['ok']]);
+                }
+
             }
             else{
 
@@ -443,15 +573,19 @@ class EventController extends Controller
                 }
 
                 $applyInvoice = $request->applyInvoice;
+                $rQuantity = $request->rQuantity;
                 //$store = $request->storePurchase;
 
                 $QRmode = $request->aQRmode;
 
+                $rank = null;
+
 
                 $this->eventRepository
-                ->InsertEvent($aId,$id,$productName,$ownBrand,$netnumber,$applyInvoice,$upload,$store,$array);
+                ->InsertEvent($aId,$id,$productName,$ownBrand,$netnumber,$applyInvoice,$upload,$store,$array,$rQuantity,$rank);
+
+                return response()->json(['success'=>['ok']]);
             }
-            return response()->json(['success'=>['ok']]);
         }
         
     }
@@ -507,6 +641,20 @@ class EventController extends Controller
     }
 
     public function ShareClick(Request $request)
+    {
+        $activity = $request->activity;
+        $type = $request->type;
+        $consumerId = $request->consumerId;
+
+        DB::table('aShareClick')
+            ->insert(
+                    ['ActivityId'=>$activity,
+                     'type' => $type, 
+                     'consumerId' => $consumerId,]
+                );
+    }
+
+    public function ShareClick2(Request $request)
     {
         $activity = $request->activity;
         $type = $request->type;

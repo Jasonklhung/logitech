@@ -23,8 +23,8 @@ class ActivityExport implements FromQuery ,WithHeadings
     public function query()
     {
         return Register::query()
-        		->select('aConsumer.cName','aConsumer.cGender','aConsumer.cBirthday','aConsumer.cMobile','aConsumer.cEmail',
-        				'aZiparea.zCity','aZiparea.zArea','aConsumer.cAddress','aStore.sCity','aStore.sName','aRegister.rNetNumber','aRegister.rInvoiceNo','aRegister.rInvoiceImage','aProductList.pCategory','aProductList.pName')
+        		->select('aRegister.rConsumer','aConsumer.cName','aConsumer.cGender','aConsumer.cBirthday','aConsumer.cMobile','aConsumer.cEmail',
+        				'aZiparea.zCity','aZiparea.zArea','aConsumer.cAddress','aStore.sCity','aStore.sName','aRegister.rNetNumber','aRegister.rInvoiceNo','aRegister.rInvoiceImage','aProductList.pCategory','aProductList.pName','aRegister.rQuantity','aRegister.rCreateDateTime','aRegister.rank')
         		->leftjoin('aConsumer','aRegister.rConsumer','=','aConsumer.id')
                 ->leftjoin('aStore','aStore.sId','=','aRegister.rStore')
         		->leftjoin('aZiparea','aZiparea.zZip','=','aConsumer.cZip')
@@ -36,6 +36,7 @@ class ActivityExport implements FromQuery ,WithHeadings
     public function headings() :array
     {
         return [
+            'id',
             '姓名',
             '性別',
             '生日',
@@ -51,6 +52,9 @@ class ActivityExport implements FromQuery ,WithHeadings
             '發票圖檔路徑',
             '商品類別',
             '商品名稱',
+            '數量',
+            '登錄時間',
+            '登陸順序'
         ];
     }
 }

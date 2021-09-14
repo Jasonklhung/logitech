@@ -24,8 +24,6 @@ class TypeRepository
 	{
 		return $this->siders
 					->where('sStatus','Y')
-					->where('sStartDate','<=',$today)
-					->where('sEndDate','>',$today)
 					->Orderby('aId','desc')
 					->get();
 	}

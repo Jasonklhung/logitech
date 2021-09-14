@@ -25,6 +25,11 @@
 						<button type="submit" class="btn search" id="event_download">下載</button>
 					</div>
 				</form>
+				<form method="post" enctype="multipart/form-data" action="{{ route('import') }}">
+					@csrf
+					<input type="file" name="import">
+					<div class="input-group"><button type="submit" class="btn search">匯入</button></div>
+				</form>
 				<hr>
 
 				

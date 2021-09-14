@@ -652,36 +652,106 @@ $('#ALL').on('click',function(){
             }
             else{
                 $.each(response, function (i, item) {
-                    if(currDate > Date.parse(new Date(item.aEndDate.replace(/-/g, '/'))) ){
-                        rows += "<div class='col-md-4 col-sm-6 col-xs-12 x-center'>"
-                        +"<a href='event/event-info/"+item.id+"'>"
-                        + "<div class='frame'>"
-                        + "<div class='frame-top black-top'>"
-                        + "<img src=" +item.aImage.substr(1)+ ">"
-                        + "</div>"
-                        + "<div class='frame-info'>"
-                        + "<h4>" +item.aTitle+ "</h4>"
-                        + "<h5><span class='glyphicon glyphicon-time' aria-hidden='true'></span>"+item.aStartDate.split(" ")[0]+"-"+item.aEndDate.split(" ")[0]+"</h5>"
-                        + "</div>"
-                        + "</div>"
-                        + "</a>"
-                        + "</div>";
-                    }
-                    else{
-                        rows += "<div class='col-md-4 col-sm-6 col-xs-12 x-center'>"
-                        +"<a href='event/event-info/"+item.id+"'>"
-                        + "<div class='frame'>"
-                        + "<div class='frame-top'>"
-                        + "<img src=" +item.aImage.substr(1)+ ">"
-                        + "</div>"
-                        + "<div class='frame-info'>"
-                        + "<h4>" +item.aTitle+ "</h4>"
-                        + "<h5><span class='glyphicon glyphicon-time' aria-hidden='true'></span>"+item.aStartDate.split(" ")[0]+"-"+item.aEndDate.split(" ")[0]+"</h5>"
-                        + "</div>"
-                        + "</div>"
-                        + "</a>"
-                        + "</div>";
-                    }
+                	if(item.id == '13'){
+                		if(currDate > Date.parse(new Date(item.aEndDate.replace(/-/g, '/'))) ){
+                			rows += "<div class='col-md-4 col-sm-6 col-xs-12 x-center'>"
+                			+"<a href='event/event-info/"+item.id+"'>"
+                			+ "<div class='frame'>"
+                			+ "<div class='frame-top black-top'>"
+                			+ "<img src=" +item.aImage.substr(1)+ ">"
+                			+ "</div>"
+                			+ "<div class='frame-info'>"
+                			+ "<h4>" +item.aTitle+ "</h4>"
+                			+ "<h5><span class='glyphicon glyphicon-time' aria-hidden='true'></span>"+item.aStartDate.split(" ")[0]+"-"+item.aEndDate.split(" ")[0]+"</h5>"
+                			+ "</div>"
+                			+ "</div>"
+                			+ "</a>"
+                			+ "</div>";
+                		}
+                		else{
+                			rows += "<div class='col-md-4 col-sm-6 col-xs-12 x-center'>"
+                			+"<a href='event/event-info/"+item.id+"'>"
+                			+ "<div class='frame'>"
+                			+ "<div class='frame-top'>"
+                			+ "<img src=" +item.aImage.substr(1)+ ">"
+                			+ "</div>"
+                			+ "<div class='frame-info'>"
+                			+ "<h4>" +item.aTitle+ "</h4>"
+                			+ "<h5><span class='glyphicon glyphicon-time' aria-hidden='true'></span>"+item.aStartDate.split(" ")[0]+"-"+item.aEndDate.split(" ")[0]+"</h5>"
+                			+ "</div>"
+                			+ "</div>"
+                			+ "</a>"
+                			+ "</div>";
+                		}
+                	}
+                });
+                $.each(response, function (i, item) {
+                	if(item.id != '13'){
+                		if(item.aMode == 'F'){
+                			if(currDate > Date.parse(new Date(item.aEndDate.replace(/-/g, '/'))) ){
+                				rows += "<div class='col-md-4 col-sm-6 col-xs-12 x-center'>"
+                				+"<a href='"+item.aFBLink+"'>"
+                				+ "<div class='frame'>"
+                				+ "<div class='frame-top black-top'>"
+                				+ "<img src=" +item.aImage.substr(1)+ ">"
+                				+ "</div>"
+                				+ "<div class='frame-info'>"
+                				+ "<h4>" +item.aTitle+ "</h4>"
+                				+ "<h5><span class='glyphicon glyphicon-time' aria-hidden='true'></span>"+item.aStartDate.split(" ")[0]+"-"+item.aEndDate.split(" ")[0]+"</h5>"
+                				+ "</div>"
+                				+ "</div>"
+                				+ "</a>"
+                				+ "</div>";
+                			}
+                			else{
+                				rows += "<div class='col-md-4 col-sm-6 col-xs-12 x-center'>"
+                				+"<a href='"+item.aFBLink+"'>"
+                				+ "<div class='frame'>"
+                				+ "<div class='frame-top'>"
+                				+ "<img src=" +item.aImage.substr(1)+ ">"
+                				+ "</div>"
+                				+ "<div class='frame-info'>"
+                				+ "<h4>" +item.aTitle+ "</h4>"
+                				+ "<h5><span class='glyphicon glyphicon-time' aria-hidden='true'></span>"+item.aStartDate.split(" ")[0]+"-"+item.aEndDate.split(" ")[0]+"</h5>"
+                				+ "</div>"
+                				+ "</div>"
+                				+ "</a>"
+                				+ "</div>";
+                			}
+                		}
+                		else{
+                			if(currDate > Date.parse(new Date(item.aEndDate.replace(/-/g, '/'))) ){
+                				rows += "<div class='col-md-4 col-sm-6 col-xs-12 x-center'>"
+                				+"<a href='event/event-info/"+item.id+"'>"
+                				+ "<div class='frame'>"
+                				+ "<div class='frame-top black-top'>"
+                				+ "<img src=" +item.aImage.substr(1)+ ">"
+                				+ "</div>"
+                				+ "<div class='frame-info'>"
+                				+ "<h4>" +item.aTitle+ "</h4>"
+                				+ "<h5><span class='glyphicon glyphicon-time' aria-hidden='true'></span>"+item.aStartDate.split(" ")[0]+"-"+item.aEndDate.split(" ")[0]+"</h5>"
+                				+ "</div>"
+                				+ "</div>"
+                				+ "</a>"
+                				+ "</div>";
+                			}
+                			else{
+                				rows += "<div class='col-md-4 col-sm-6 col-xs-12 x-center'>"
+                				+"<a href='event/event-info/"+item.id+"'>"
+                				+ "<div class='frame'>"
+                				+ "<div class='frame-top'>"
+                				+ "<img src=" +item.aImage.substr(1)+ ">"
+                				+ "</div>"
+                				+ "<div class='frame-info'>"
+                				+ "<h4>" +item.aTitle+ "</h4>"
+                				+ "<h5><span class='glyphicon glyphicon-time' aria-hidden='true'></span>"+item.aStartDate.split(" ")[0]+"-"+item.aEndDate.split(" ")[0]+"</h5>"
+                				+ "</div>"
+                				+ "</div>"
+                				+ "</a>"
+                				+ "</div>";
+                			}
+                		}
+                	}
                 });
             }
             $('#active').append(rows);
@@ -707,19 +777,53 @@ $('#playing').on('click',function(){
             }
             else{
                 $.each(response, function (i, item) {
-                    rows += "<div class='col-md-4 col-sm-6 col-xs-12 x-center'>"
-                    +"<a href='event/event-info/"+item.id+"'>"
-                    + "<div class='frame'>"
-                    + "<div class='frame-top'>"
-                    + "<img src=" +item.aImage.substr(1)+ ">"
-                    + "</div>"
-                    + "<div class='frame-info'>"
-                    + "<h4>" +item.aTitle+ "</h4>"
-                    + "<h5><span class='glyphicon glyphicon-time' aria-hidden='true'></span>"+item.aStartDate.split(" ")[0]+"-"+item.aEndDate.split(" ")[0]+"</h5>"
-                    + "</div>"
-                    + "</div>"
-                    + "</a>"
-                    + "</div>";
+                	if(item.id == '13'){
+                		rows += "<div class='col-md-4 col-sm-6 col-xs-12 x-center'>"
+                		+"<a href='event/event-info/"+item.id+"'>"
+                		+ "<div class='frame'>"
+                		+ "<div class='frame-top'>"
+                		+ "<img src=" +item.aImage.substr(1)+ ">"
+                		+ "</div>"
+                		+ "<div class='frame-info'>"
+                		+ "<h4>" +item.aTitle+ "</h4>"
+                		+ "<h5><span class='glyphicon glyphicon-time' aria-hidden='true'></span>"+item.aStartDate.split(" ")[0]+"-"+item.aEndDate.split(" ")[0]+"</h5>"
+                		+ "</div>"
+                		+ "</div>"
+                		+ "</a>"
+                		+ "</div>";
+                	}
+                });
+                $.each(response, function (i, item) {
+                	if(item.id != '13' && item.aMode == 'F'){
+                		rows += "<div class='col-md-4 col-sm-6 col-xs-12 x-center'>"
+                		+"<a href='"+item.aFBLink+"'>"
+                		+ "<div class='frame'>"
+                		+ "<div class='frame-top'>"
+                		+ "<img src=" +item.aImage.substr(1)+ ">"
+                		+ "</div>"
+                		+ "<div class='frame-info'>"
+                		+ "<h4>" +item.aTitle+ "</h4>"
+                		+ "<h5><span class='glyphicon glyphicon-time' aria-hidden='true'></span>"+item.aStartDate.split(" ")[0]+"-"+item.aEndDate.split(" ")[0]+"</h5>"
+                		+ "</div>"
+                		+ "</div>"
+                		+ "</a>"
+                		+ "</div>";
+                	}
+                	else if(item.id != '13'){
+                		rows += "<div class='col-md-4 col-sm-6 col-xs-12 x-center'>"
+                		+"<a href='event/event-info/"+item.id+"'>"
+                		+ "<div class='frame'>"
+                		+ "<div class='frame-top'>"
+                		+ "<img src=" +item.aImage.substr(1)+ ">"
+                		+ "</div>"
+                		+ "<div class='frame-info'>"
+                		+ "<h4>" +item.aTitle+ "</h4>"
+                		+ "<h5><span class='glyphicon glyphicon-time' aria-hidden='true'></span>"+item.aStartDate.split(" ")[0]+"-"+item.aEndDate.split(" ")[0]+"</h5>"
+                		+ "</div>"
+                		+ "</div>"
+                		+ "</a>"
+                		+ "</div>";
+                	}
                 });
             }
             $('#active').append(rows);
@@ -1037,7 +1141,19 @@ $(document).on('change', '#productCategory', function(){
 		success:function(res){
 			var selOpts = "<option value='' selected='selected' disabled='true'>請選擇型號</option>";
 			$.each(res, function (i, item) {
-				selOpts += "<option value='"+item.pId+"'>"+item.pName+"</option>";
+				if(item.pId == '48'){
+					selOpts += "<option value='"+item.pId+"'>"+item.pName+"</option>";
+				}
+			})
+			$.each(res, function (i, item) {
+				if(item.pId == '11'){
+					selOpts += "<option value='"+item.pId+"'>"+item.pName+"</option>";
+				}
+			})
+			$.each(res, function (i, item) {
+				if(item.pId != '48' && item.pId != '11'){
+					selOpts += "<option value='"+item.pId+"'>"+item.pName+"</option>";
+				}
 			})
 			$("#productName").empty();
 			$('#productName').append(selOpts);
@@ -1099,6 +1215,57 @@ $(document).ready(function(){
 	})
 })
 
+
+//登錄發票-活動13
+$(document).ready(function(){
+
+	jQuery('.alert-danger').hide();
+
+	$('#applyForm13').on('submit',function(e){
+
+		e.preventDefault();
+		var formData = new FormData(this);
+
+		$.ajax({
+			url:'../../api/registerSubmit',
+			method:"POST",
+			data:formData,
+			success:function(result){
+				if(result.errors) {
+					jQuery('.alert-danger').html('');
+
+					jQuery.each(result.errors, function(key, value){
+
+						jQuery('.alert-danger').show();
+						jQuery('.alert-danger').append('<li>'+value+'</li>');
+					});
+				}
+				else{
+					jQuery.each(result.success, function(key, value){
+							console.log(key);
+							console.log(value);
+
+						if(value == 'ok'){
+							jQuery('#apply').modal('hide');
+							jQuery('#success').modal('show');
+						}
+						else if(value == 'can'){
+							jQuery('#apply').modal('hide');
+							jQuery('#success13').modal('show');
+						}
+						else{
+							jQuery('#apply').modal('hide');
+							jQuery('#success133').modal('show');
+						}
+					});
+				}
+			},
+			cache: false,
+			contentType: false,
+			processData: false
+		})
+	})
+})
 
 //贈品圖
 function pProductImage() {
@@ -1213,18 +1380,26 @@ function authCheck() {
 }
 
 
-// $(document).ready(function(){
-// 	$('#netbuy').on('click',function(){
-// 		if($("#netbuy").prop("checked")) {
-// 			document.getElementById("numberTR1").style.display="";
-// 			document.getElementById("numberTR2").style.display="";
-// 		}
-// 		else{
-// 			document.getElementById("numberTR1").style.display="none";
-// 			document.getElementById("numberTR2").style.display="none";
-// 		}
-// 	})
-// })
+$(document).ready(function(){
+	$('#netbuy').on('click',function(){
+		if($("#netbuy").prop("checked")) {
+			document.getElementById("numberTR1").style.display="";
+			document.getElementById("numberTR2").style.display="";
+			document.getElementById("numberTR3").style.display="";
+			document.getElementById("numberTR4").style.display="";
+			document.getElementById("numberTR5").style.display="none";
+			document.getElementById("numberTR6").style.display="none";
+		}
+		else{
+			document.getElementById("numberTR1").style.display="none";
+			document.getElementById("numberTR2").style.display="none";
+			document.getElementById("numberTR3").style.display="none";
+			document.getElementById("numberTR4").style.display="none";
+			document.getElementById("numberTR5").style.display="";
+			document.getElementById("numberTR6").style.display="";
+		}
+	})
+})
 
 
 // $(document).on('change', '#storePurchase', function(){

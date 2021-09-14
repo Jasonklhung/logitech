@@ -59,9 +59,9 @@
 				            </div>
 						</div>
 						<div class="input-rows">
-							<p class="input-title">上傳活動圖片</p><input type="file" name="EventImage" class="input-val" id="upload-eventpic">
+							<p class="input-title">上傳活動圖片</p><input type="file" name="image" class="input-val" id="upload-eventpic">
 							<!-- <div class="tableimg-frame"> -->
-							<img class="uploadpic" id="preview_img7" src=""></img>
+							<img class="uploadpic" id="preview_img7" src="" ></img>
 							<!-- </div>	 -->
 						</div>
 

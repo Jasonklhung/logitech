@@ -41,7 +41,7 @@ class RegisterController extends Controller
         
         
         $code = hash('sha256', 'accuhit:sms:'.$reMobile.':'.$platform) ;
-        $url = 'http://ub001.accuhit.net/api/fet-msg.php?&code='.$code.'&mobile='.$reMobile.'&message='.$msg.'&platform='.$platform.'' ;
+        $url = 'http://sms.accunix.net:9080/api/fet-msg.php?&code='.$code.'&mobile='.$reMobile.'&message='.$msg.'&platform='.$platform.'' ;
         $json = file_get_contents($url);
 
         $arr = json_decode($json, true) ;
@@ -69,7 +69,7 @@ class RegisterController extends Controller
         
         
         $code = hash('sha256', 'accuhit:sms:'.$reMobile.':'.$platform) ;
-        $url = 'http://ub001.accuhit.net/api/fet-msg.php?&code='.$code.'&mobile='.$reMobile.'&message='.$msg.'&platform='.$platform.'' ;
+        $url = 'http://sms.accunix.net:9080/api/fet-msg.php?&code='.$code.'&mobile='.$reMobile.'&message='.$msg.'&platform='.$platform.'' ;
         $json = file_get_contents($url);
 
         $arr = json_decode($json, true) ;
@@ -126,7 +126,7 @@ class RegisterController extends Controller
 
 
             $code = hash('sha256', 'accuhit:sms:'.$reMobile.':'.$platform) ;
-            $url = 'http://ub001.accuhit.net/api/fet-msg.php?&code='.$code.'&mobile='.$reMobile.'&message='.$msg.'&platform='.$platform.'' ;
+            $url = 'http://sms.accunix.net:9080/api/fet-msg.php?&code='.$code.'&mobile='.$reMobile.'&message='.$msg.'&platform='.$platform.'' ;
             $json = file_get_contents($url);
 
             $arr = json_decode($json, true) ;

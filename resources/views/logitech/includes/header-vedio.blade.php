@@ -53,37 +53,7 @@
 	})(window,document,'script','dataLayer','GTM-WQFQSNC');</script>
 	<!-- End Google Tag Manager -->
 	<script>
-		function heateorSssPopup(e,activity) {
-            @if(Auth::check())
-                var consumerId = "{{ Auth::user()->id }}";
-                $.ajax({
-                    method:'post',
-                    url:"{{route('ShareClick')}}",
-                    dataType:'json',
-                    data:{
-                        'activity':activity,
-                        'type':'FB',
-                        'consumerId':consumerId
-                    },
-                    success:function(res){
-
-                    }
-                })
-            @else
-                $.ajax({
-                    method:'post',
-                    url:"{{route('ShareClick')}}",
-                    dataType:'json',
-                    data:{
-                        'activity':activity,
-                        'type':'FB',
-                        'consumerId':'null'
-                    },
-                    success:function(res){
-                        
-                    }
-                })
-            @endif 
+		function heateorSssPopup(e) {
             ;window.open(e,"popUpWindow","height=400,width=600,left=400,top=100,resizable,scrollbars,toolbar=0,personalbar=0,menubar=no,location=no,directories=no,status")}
 	</script>
 </head>
@@ -94,8 +64,6 @@
 	<!-- End Google Tag Manager (noscript) -->
 
 	@include('logitech.includes.navbar')
-
-	@include('logitech.includes.slides')
 
 	@yield('index')
 

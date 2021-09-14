@@ -7,8 +7,8 @@ use App\Activities;
 use App\Register;
 use App\BannerClick;
 use App\StoreClick;
-use App\ShareClick;
 use DB;
+use App\ShareClick;
 
 class DashboardRepository
 {
@@ -20,7 +20,7 @@ class DashboardRepository
 	protected $storeClick;
 	protected $shareClick;
 
-	public function __construct(Consumer $consumer,Activities $activities,Register $register,BannerClick $bannerClick,StoreClick $storeClick , ShareClick $shareClick)
+	public function __construct(Consumer $consumer,Activities $activities,Register $register,BannerClick $bannerClick,StoreClick $storeClick,shareClick $shareClick)
 	{
 		$this->consumer = $consumer;
 		$this->activities = $activities;
@@ -62,49 +62,49 @@ class DashboardRepository
 				->count()];
 	}
 
-	public function getAgeMember($month)
+	public function getAgeMember($month,$today)
 	{
 		return  [DB::select('
-			SELECT count(*) as M_18 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND NOW() AND DATEDIFF(NOW(),cBirthday)/365<18 AND cGender = "M" AND cStatus="Y"')
+			SELECT count(*) as M_18 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND "'.$today.'" AND DATEDIFF(NOW(),cBirthday)/365<18 AND cGender = "M" AND cStatus="Y"')
 			,
 			DB::select('
-			SELECT count(*) as F_18 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND NOW() AND DATEDIFF(NOW(),cBirthday)/365<18 AND cGender = "F" AND cStatus="Y"')
+			SELECT count(*) as F_18 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND "'.$today.'" AND DATEDIFF(NOW(),cBirthday)/365<18 AND cGender = "F" AND cStatus="Y"')
 			,
 			DB::select('
-			SELECT count(*) as M_1824 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND NOW() AND DATEDIFF(NOW(),cBirthday)/365>=18 AND DATEDIFF(NOW(),cBirthday)/365<=24 AND cGender = "M" AND cStatus="Y"')
+			SELECT count(*) as M_1824 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND "'.$today.'" AND DATEDIFF(NOW(),cBirthday)/365>=18 AND DATEDIFF(NOW(),cBirthday)/365<=24 AND cGender = "M" AND cStatus="Y"')
 			,
 			DB::select('
-			SELECT count(*) as F_1824 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND NOW() AND  DATEDIFF(NOW(),cBirthday)/365>=18 AND DATEDIFF(NOW(),cBirthday)/365<=24 AND cGender = "F" AND cStatus="Y"')
+			SELECT count(*) as F_1824 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND "'.$today.'" AND  DATEDIFF(NOW(),cBirthday)/365>=18 AND DATEDIFF(NOW(),cBirthday)/365<=24 AND cGender = "F" AND cStatus="Y"')
 			,
 			DB::select('
-			SELECT count(*) as M_2534 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND NOW() AND  DATEDIFF(NOW(),cBirthday)/365>=25 AND DATEDIFF(NOW(),cBirthday)/365<=34 AND cGender = "M" AND cStatus="Y"')
+			SELECT count(*) as M_2534 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND "'.$today.'" AND  DATEDIFF(NOW(),cBirthday)/365>=25 AND DATEDIFF(NOW(),cBirthday)/365<=34 AND cGender = "M" AND cStatus="Y"')
 			,
 			DB::select('
-			SELECT count(*) as F_2534 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND NOW() AND  DATEDIFF(NOW(),cBirthday)/365>=25 AND DATEDIFF(NOW(),cBirthday)/365<=34 AND cGender = "F" AND cStatus="Y"')
+			SELECT count(*) as F_2534 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND "'.$today.'" AND  DATEDIFF(NOW(),cBirthday)/365>=25 AND DATEDIFF(NOW(),cBirthday)/365<=34 AND cGender = "F" AND cStatus="Y"')
 			,
 			DB::select('
-			SELECT count(*) as M_3544 FROM aConsumer WHERE  cCreateDateTime BETWEEN "'.$month.'" AND NOW() AND DATEDIFF(NOW(),cBirthday)/365>=35 AND DATEDIFF(NOW(),cBirthday)/365<=44 AND cGender = "M" AND cStatus="Y"')
+			SELECT count(*) as M_3544 FROM aConsumer WHERE  cCreateDateTime BETWEEN "'.$month.'" AND "'.$today.'" AND DATEDIFF(NOW(),cBirthday)/365>=35 AND DATEDIFF(NOW(),cBirthday)/365<=44 AND cGender = "M" AND cStatus="Y"')
 			,
 			DB::select('
-			SELECT count(*) as F_3544 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND NOW() AND  DATEDIFF(NOW(),cBirthday)/365>=35 AND DATEDIFF(NOW(),cBirthday)/365<=44 AND cGender = "F" AND cStatus="Y"')
+			SELECT count(*) as F_3544 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND "'.$today.'" AND  DATEDIFF(NOW(),cBirthday)/365>=35 AND DATEDIFF(NOW(),cBirthday)/365<=44 AND cGender = "F" AND cStatus="Y"')
 			,
 			DB::select('
-			SELECT count(*) as M_4554 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND NOW() AND  DATEDIFF(NOW(),cBirthday)/365>=45 AND DATEDIFF(NOW(),cBirthday)/365<=54 AND cGender = "M" AND cStatus="Y"')
+			SELECT count(*) as M_4554 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND "'.$today.'" AND  DATEDIFF(NOW(),cBirthday)/365>=45 AND DATEDIFF(NOW(),cBirthday)/365<=54 AND cGender = "M" AND cStatus="Y"')
 			,
 			DB::select('
-			SELECT count(*) as F_4554 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND NOW() AND  DATEDIFF(NOW(),cBirthday)/365>=45 AND DATEDIFF(NOW(),cBirthday)/365<=54 AND cGender = "F" AND cStatus="Y"')
+			SELECT count(*) as F_4554 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND "'.$today.'" AND  DATEDIFF(NOW(),cBirthday)/365>=45 AND DATEDIFF(NOW(),cBirthday)/365<=54 AND cGender = "F" AND cStatus="Y"')
 			,
 			DB::select('
-			SELECT count(*) as M_5565 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND NOW() AND  DATEDIFF(NOW(),cBirthday)/365>=55 AND DATEDIFF(NOW(),cBirthday)/365<=65 AND cGender = "M" AND cStatus="Y"')
+			SELECT count(*) as M_5565 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND "'.$today.'" AND  DATEDIFF(NOW(),cBirthday)/365>=55 AND DATEDIFF(NOW(),cBirthday)/365<=65 AND cGender = "M" AND cStatus="Y"')
 			,
 			DB::select('
-			SELECT count(*) as F_5565 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND NOW() AND  DATEDIFF(NOW(),cBirthday)/365>=55 AND DATEDIFF(NOW(),cBirthday)/365<=65 AND cGender = "F" AND cStatus="Y"')
+			SELECT count(*) as F_5565 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND "'.$today.'" AND  DATEDIFF(NOW(),cBirthday)/365>=55 AND DATEDIFF(NOW(),cBirthday)/365<=65 AND cGender = "F" AND cStatus="Y"')
 			,
 			DB::select('
-			SELECT count(*) as M_65 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND NOW() AND  DATEDIFF(NOW(),cBirthday)/365>65 AND cGender = "M" AND cStatus="Y"')
+			SELECT count(*) as M_65 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND "'.$today.'" AND  DATEDIFF(NOW(),cBirthday)/365>65 AND cGender = "M" AND cStatus="Y"')
 			,
 			DB::select('
-			SELECT count(*) as F_65 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND NOW() AND  DATEDIFF(NOW(),cBirthday)/365>65 AND cGender = "F" AND cStatus="Y"')];
+			SELECT count(*) as F_65 FROM aConsumer WHERE cCreateDateTime BETWEEN "'.$month.'" AND "'.$today.'" AND  DATEDIFF(NOW(),cBirthday)/365>65 AND cGender = "F" AND cStatus="Y"')];
 	}
 
 	public function getAreaMember($month,$today)
@@ -150,8 +150,8 @@ class DashboardRepository
 	{
 		return DB::select('
 			SELECT id,aTitle,aType,aStartDate,aEndDate,
-			(SELECT COUNT(*) FROM aActivitiesClick  WHERE aActivitiesClick.aCreateDateTime BETWEEN "'.$month.'" AND NOW() AND aActivitiesClick.aActivity=a.id) AS active_click,
-			(SELECT COUNT(*) FROM aRegister WHERE  aRegister.rCreateDateTime BETWEEN "'.$month.'" AND NOW() AND aRegister.rActivity=a.id) AS active_login
+			(SELECT COUNT(*) FROM aActivitiesClick  WHERE aActivitiesClick.aCreateDateTime BETWEEN a.aStartRegister AND a.aEndRegister AND aActivitiesClick.aActivity=a.id) AS active_click,
+			(SELECT COUNT(*) FROM aRegister WHERE  aRegister.rCreateDateTime BETWEEN a.aStartRegister AND a.aEndRegister AND aRegister.rActivity=a.id) AS active_login
 			FROM
 			aActivities as a
 			Order By a.id desc');
@@ -441,9 +441,10 @@ class DashboardRepository
 		return $this->register
 				->select(
 					DB::raw("count(*) as count"),
+					DB::raw("sum(aRegister.rQuantity) as sum"),
 					DB::raw("c.pName"))
-				->leftjoin('aConsumer as b','b.id','=','aRegister.rConsumer')
 				->leftjoin('aProductList as c','c.pId','=','aRegister.rProduct')
+				->whereBetween('aRegister.rCreateDateTime', [$start, $end])
 				->where('rActivity',$id)
 				->groupBy('c.pName')
 				->orderBy(DB::raw('count(*)'),'desc')
@@ -515,39 +516,39 @@ class DashboardRepository
 				];
 	}
 
-	public function getShareClick($id,$start,$end)
-	{
-		return [
-				$this->shareClick
-				->whereBetween('created_at', [$start, $end])
-				->count()
-				,
-				$this->shareClick
-				->where('ConsumerId','!=','0')
-				->whereBetween('created_at', [$start, $end])
-				->count()
-				,
-				$this->shareClick
-				->where('ConsumerId','=','0')
-				->whereBetween('created_at', [$start, $end])
-				->count()
-				,
-				$this->shareClick
-				->where('type','=','FB')
-				->whereBetween('created_at', [$start, $end])
-				->count()
-				,
-				$this->shareClick
-				->where('type','=','Line')
-				->whereBetween('created_at', [$start, $end])
-				->count()
-				,
-				$this->shareClick
-				->where('type','=','Email')
-				->whereBetween('created_at', [$start, $end])
-				->count()
-				];
-	}
+	// public function getShareClick($id,$start,$end)
+	// {
+	// 	return [
+	// 			$this->shareClick
+	// 			->whereBetween('created_at', [$start, $end])
+	// 			->count()
+	// 			,
+	// 			$this->shareClick
+	// 			->where('ConsumerId','!=','0')
+	// 			->whereBetween('created_at', [$start, $end])
+	// 			->count()
+	// 			,
+	// 			$this->shareClick
+	// 			->where('ConsumerId','=','0')
+	// 			->whereBetween('created_at', [$start, $end])
+	// 			->count()
+	// 			,
+	// 			$this->shareClick
+	// 			->where('type','=','FB')
+	// 			->whereBetween('created_at', [$start, $end])
+	// 			->count()
+	// 			,
+	// 			$this->shareClick
+	// 			->where('type','=','Line')
+	// 			->whereBetween('created_at', [$start, $end])
+	// 			->count()
+	// 			,
+	// 			$this->shareClick
+	// 			->where('type','=','Email')
+	// 			->whereBetween('created_at', [$start, $end])
+	// 			->count()
+	// 			];
+	// }
 
 	public function regSearch($id,$start,$end)
 	{
@@ -648,6 +649,24 @@ class DashboardRepository
 				->groupBy('c.pName')
 				->orderBy(DB::raw('count(*)'),'desc')
 				->get()
+				,
+				$this->shareClick
+				->where('type','=','FB')
+				->where('ActivityId',$id)
+				->whereBetween('created_at', [$start, $end])
+				->count()
+				,
+				$this->shareClick
+				->where('type','=','Line')
+				->where('ActivityId',$id)
+				->whereBetween('created_at', [$start, $end])
+				->count()
+				,
+				$this->shareClick
+				->where('type','=','Email')
+				->where('ActivityId',$id)
+				->whereBetween('created_at', [$start, $end])
+				->count()
 			];
 
 	}

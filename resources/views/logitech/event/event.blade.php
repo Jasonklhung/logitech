@@ -30,7 +30,8 @@
 		</div>	
 		<div class="container" style="margin-top: 20px;">
 			<div class="row" id="active"> 
-			@foreach($event as $data)
+			@foreach($event as $d => $data)
+			@if($data->id == 13)
 				@if($data->aMode == 'F')
 				@if($data->aEndDate < $today)
 					@php
@@ -40,6 +41,9 @@
 					@php
 						$blacktop = '';
 					@endphp
+				@endif
+				@if($d/3 == 1 || $d/3 == 2 || $d/3 == 3 || $d/3 == 4 || $d/3 == 5 || $d/3 == 6 || $d/3 == 7 || $d/3 == 8 || $d/3 == 9 || $d/3 == 10)
+				<div class="clearfix hidden-xs"></div>
 				@endif
 				<div class="col-md-4 col-sm-6 col-xs-12 x-center">
 					<a href="{{$data->aFBLink}}" ">
@@ -64,6 +68,9 @@
 						$blacktop = '';
 					@endphp
 				@endif
+				@if($d/3 == 1 || $d/3 == 2 || $d/3 == 3 || $d/3 == 4 || $d/3 == 5 || $d/3 == 6 || $d/3 == 7 || $d/3 == 8 || $d/3 == 9 || $d/3 == 10)
+				<div class="clearfix hidden-xs"></div>
+				@endif
 				<div class="col-md-4 col-sm-6 col-xs-12 x-center">
 					<a href="event/event-info/{{$data->id}}" ">
 						<div class="frame">
@@ -78,6 +85,64 @@
 					</a>
 				</div>
 				@endif
+			@endif
+			@endforeach
+			@foreach($event as $d => $data)
+			@if($data->id != 13)
+				@if($data->aMode == 'F')
+				@if($data->aEndDate < $today)
+					@php
+						$blacktop = ' black-top';
+					@endphp
+				@else
+					@php
+						$blacktop = '';
+					@endphp
+				@endif
+				@if($d/3 == 1 || $d/3 == 2 || $d/3 == 3 || $d/3 == 4 || $d/3 == 5 || $d/3 == 6 || $d/3 == 7 || $d/3 == 8 || $d/3 == 9 || $d/3 == 10)
+				<div class="clearfix hidden-xs"></div>
+				@endif
+				<div class="col-md-4 col-sm-6 col-xs-12 x-center">
+					<a href="{{$data->aFBLink}}" ">
+						<div class="frame">
+							<div class="frame-top{{$blacktop}}">
+								<img src="{{ substr($data->aImage, 1) }}" alt="">
+							</div>
+							<div class="frame-info">
+								<h4>{{$data->aTitle}}</h4>
+								<h5><span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{explode(' ',$data->aStartDate)[0]}}-{{explode(' ',$data->aEndDate)[0]}}</h5>
+							</div>	
+						</div>
+					</a>
+				</div>
+				@else
+				@if($data->aEndDate < $today)
+					@php
+						$blacktop = ' black-top';
+					@endphp
+				@else
+					@php
+						$blacktop = '';
+					@endphp
+				@endif
+				@if($d/3 == 1 || $d/3 == 2 || $d/3 == 3 || $d/3 == 4 || $d/3 == 5 || $d/3 == 6 || $d/3 == 7 || $d/3 == 8 || $d/3 == 9 || $d/3 == 10)
+				<div class="clearfix hidden-xs"></div>
+				@endif
+				<div class="col-md-4 col-sm-6 col-xs-12 x-center">
+					<a href="event/event-info/{{$data->id}}" ">
+						<div class="frame">
+							<div class="frame-top{{$blacktop}}">
+								<img src="{{ substr($data->aImage, 1) }}" alt="">
+							</div>
+							<div class="frame-info">
+								<h4>{{$data->aTitle}}</h4>
+								<h5><span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{explode(' ',$data->aStartDate)[0]}}-{{explode(' ',$data->aEndDate)[0]}}</h5>
+							</div>	
+						</div>
+					</a>
+				</div>
+				@endif
+			@endif
 			@endforeach
 			</div>
 

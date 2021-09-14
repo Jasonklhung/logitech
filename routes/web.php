@@ -32,6 +32,21 @@ Route::get('/event', 'EventController@event')->name('eventA');
 
 Route::get('/event/event-info/{id}', 'EventController@eventinfo')->name('evevntinfo');
 
+//客制活動
+Route::get('/event/event-info/13/video', 'EventController@video')->name('video');
+
+Route::get('/event/event-info/13/video/redirect', 'EventController@redirect')->name('redirect');
+
+Route::get('/event/event-info/13/video/redirect2', 'EventController@redirect2')->name('redirect2');
+
+Route::get('/event/event-info/13/video/FBstore', 'EventController@FBstore')->name('FBstore');
+
+Route::get('/event/event-info/13/video/FBstore2', 'EventController@FBstore2')->name('FBstore2');
+
+Route::get('/event/event-info/13/video/fb', 'EventController@fb')->name('fb');
+
+//客制活動End
+
 Route::get('/award', 'AwardController@award')->name('awardB');
 
 Route::get('/member-login', 'MemberController@memberlogin');
@@ -39,11 +54,11 @@ Route::get('/member-login', 'MemberController@memberlogin');
 
 //測試uplaod file
 // Route::post('/file', [ 'as' => 'file', 'uses' => 'RegisterController@file']);
-// Route::get('/home', function(){
-// 	return view('home');
-// });
+Route::get('/info', function(){
+	return view('info');
+});
 
-
+Route::get('/qrcode-event', 'LoginController@qrcode')->name('qrcode');
 
 //登入驗證後
 Route::group(['middleware' => ['auth:web']], function () {

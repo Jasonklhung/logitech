@@ -36,7 +36,7 @@ class LoginController extends Controller
         if (Auth::guard('admin')->attempt(array('aAccount' => $account, 'password' => $password))){
 
 
-           return redirect()->route('dashboard');
+           return redirect()->route('test');
        }
        else{
        		return back()->with('error','帳號密碼錯誤');

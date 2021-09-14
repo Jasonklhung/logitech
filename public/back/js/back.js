@@ -1301,6 +1301,13 @@ $(document).ready(function(){
 					$('#SCM3').append(response[12]);
 
 					//
+					$('#ShareFB').empty();
+					$('#ShareLine').empty();
+					$('#ShareEmail').empty();
+
+					$('#ShareFB').append(response[14]);
+					$('#ShareLine').append(response[15]);
+					$('#ShareEmail').append(response[16]);
 
 
 					//縣市pie

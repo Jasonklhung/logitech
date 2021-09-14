@@ -70,6 +70,7 @@
 								<td>#</td>
 								<td>活動名稱</td>
 								<td>產品型號</td>
+								<td>數量</td>
 								<td>公告名單</td>
 								<td>登錄時間</td>
 								<td>活動狀態</td>
@@ -84,6 +85,7 @@
 								<td>{{ $loop->iteration }}</td>
 								<td>{{ $data->title }}</td>
 								<td>{{ $data->product }}</td>
+								<td>{{ $data->quantity}}</td>
 								<td><a href="event/event-info/{{$data->id}}">查看內容</a></td>
 								<td>{{ $data->regTime }}</td>
 								@if($data->endDate <$today)

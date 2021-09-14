@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\back\DashboardRepository;
 use Carbon\Carbon;
+use App\Activities;
+use DB;
 
 class DashboardController extends Controller
 {
@@ -18,8 +20,17 @@ class DashboardController extends Controller
 
     public function dashboard()
     {
-    	$today = Carbon::now()->format('Y-m-d');
-    	$month = date("Y-m-d", strtotime('-30 day'));
+        $act = Activities::all();
+
+        foreach ($act as $key => $value) {
+            
+        }
+
+        $month = $value->aStartRegister;
+        $today = $value->aEndRegister;
+
+    	// $today = Carbon::now()->format('Y-m-d');
+    	// $month = date("Y-m-d", strtotime('-30 day'));
 
 
     	$gender = $this->dashboardRepository
@@ -29,7 +40,7 @@ class DashboardController extends Controller
     			->getNewOldMember($month,$today);
 
     	$age = $this->dashboardRepository
-    			->getAgeMember($month);
+    			->getAgeMember($month,$today);
 
     	$area = $this->dashboardRepository
     			->getAreaMember($month,$today);
@@ -73,11 +84,50 @@ class DashboardController extends Controller
         $StoreClickMember = $this->dashboardRepository
                         ->getStoreClickMember($id,$start,$end);
 
-        $ShareClick = $this->dashboardRepository
-                        ->getShareClick($id,$start,$end);
+        // $ShareClick = $this->dashboardRepository
+        //                 ->getShareClick($id,$start,$end);
+
+                        $ShareClick =  [
+                            DB::table('aShareClick')
+                            ->where('ActivityId',$id)
+                            ->whereBetween('created_at', [$start, $end])
+                            ->count()
+                            ,
+                            DB::table('aShareClick')
+                            ->where('ConsumerId','!=','0')
+                            ->where('ActivityId',$id)
+                            ->whereBetween('created_at', [$start, $end])
+                            ->count()
+                            ,
+                            DB::table('aShareClick')
+                            ->where('ConsumerId','=','0')
+                            ->where('ActivityId',$id)
+                            ->whereBetween('created_at', [$start, $end])
+                            ->count()
+                            ,
+                            DB::table('aShareClick')
+                            ->where('type','=','FB')
+                            ->where('ActivityId',$id)
+                            ->whereBetween('created_at', [$start, $end])
+                            ->count()
+                            ,
+                            DB::table('aShareClick')
+                            ->where('type','=','Line')
+                            ->where('ActivityId',$id)
+                            ->whereBetween('created_at', [$start, $end])
+                            ->count()
+                            ,
+                            DB::table('aShareClick')
+                            ->where('type','=','Email')
+                            ->where('ActivityId',$id)
+                            ->whereBetween('created_at', [$start, $end])
+                            ->count()
+                        ];
+
 
         $registerProduct = $this->dashboardRepository
                         ->getRegisterProduct($id,$start,$end);
+
 
 
         return view('back.dashboard.activity-info',compact('activeDate','logintotal','loginRegister','MaleRegister','BannerClick','BannerClickMember','StoreClick','StoreClickMember','ShareClick','registerProduct'));
